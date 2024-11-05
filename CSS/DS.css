@@ -1,0 +1,171 @@
+@font-face {
+  font-family: Varela-Regular;
+  src: url(../Font-style/VarelaRound-Regular.ttf);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scroll-behavior: smooth !important;
+}
+
+body {
+  font-family: Varela-Regular, sans-serif;
+  font-size: 22px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 13vh;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  display: flex;
+  width: 100%;
+  gap: 32px;
+  padding: 24px;
+  padding-inline: 5%;
+}
+
+.nav span,
+.nav a:link {
+  display: inline-block;
+}
+
+.nav img {
+  height: 32px;
+  margin-right: auto;
+}
+
+.nav a:link,
+.nav a:visited {
+  font-size: 24px;
+  text-decoration: none;
+  color: #212529;
+  padding-bottom: 1px;
+  border-bottom: 2.5px solid transparent;
+  transition-duration: 150ms;
+}
+
+.nav a:hover,
+.nav a:active {
+  text-decoration: none;
+  border-bottom: 2.5px solid #212529;
+  transform: translate(0, -3px);
+  color: #212529;
+  padding-bottom: 1px;
+}
+
+main {
+  display: flex;
+  height: 87vh;
+}
+
+.Sidebar {
+  /* overflow-y: scroll; */
+  border: none;
+  width: 480px;
+}
+
+main h2 {
+  text-align: center;
+  margin-top: 30px;
+}
+.Content {
+  overflow-y: scroll;
+  /* overflow-y: hidden; */
+
+  width: 100%;
+}
+
+.Content-box {
+  padding-top: 10px;
+}
+
+.Content h3 {
+  /* text-align: center; */
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+
+.code-box {
+  display: flex;
+  gap: 20px;
+  padding: 0px 30px;
+  margin-bottom: 80px;
+}
+
+.code {
+  flex: 1.3;
+}
+
+.output {
+  flex: 1;
+}
+
+.code h4,
+.output h4 {
+  margin-bottom: 12px;
+}
+
+.code pre,
+.output pre {
+  font-family: Varela-Regular;
+  word-spacing: 2px;
+  overflow-y: scroll;
+  height: 62vh;
+  font-size: 15px;
+  padding: 12px;
+  background-color: black;
+  border: 8px solid black;
+  border-radius: 8px;
+  color: white;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  gap: 20px;
+  color: #343a40;
+  padding: 20px;
+  box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+footer img {
+  height: 45px;
+  width: 45px;
+  border-radius: 25px;
+}
+
+footer p {
+  font-weight: bold;
+}
+
+footer span {
+  letter-spacing: 2px;
+  border-left: 2px solid #343a40;
+  font-size: 18px;
+  padding-left: 20px;
+  padding-block: 5px;
+  margin-right: auto;
+}
+
+.links svg {
+  height: 26px;
+  width: 30px;
+  color: #495057;
+  transition-duration: 200ms;
+}
+
+.links:hover svg {
+  transform: scale(125%);
+}
