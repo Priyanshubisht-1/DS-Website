@@ -11,7 +11,7 @@
       <nav class="nav" id="nav">
         <img src="../Images/1000031782-removebg-preview.png" />
         <a href="../index.html">Home</a>
-        <a href="DS.html">Practise</a>
+        <a href="DS.html">Practice</a>
         <a href="../index.html#About">About</a>
         <a href="#Contact">Contact</a>
       </nav>
@@ -1766,11 +1766,38 @@ Result of Expression : 29
           <div class="code-box">
             <div class="code">
               <h4>Code :</h4>
-              <pre></pre>
+              <pre>
+#include &lt;stdio.h>
+
+void TOH(int n, char A, char B, char C)  //for A,B,C -> character (for towers)
+{
+    if (n > 0)
+    { 
+        TOH(n - 1, A, C, B);
+        printf("From %c to %c \n",A,C);
+        TOH(n - 1, B, A, C);
+    }
+}
+
+int main()
+{
+    TOH(3,'A','B','C');
+    return 0;
+}
+
+              </pre>
             </div>
             <div class="output">
               <h4>Output :</h4>
-              <pre></pre>
+              <pre>
+From A to C 
+From A to B 
+From C to B
+From A to C
+From B to A
+From B to C
+From A to C
+              </pre>
             </div>
           </div>
         </div>

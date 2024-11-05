@@ -11,7 +11,7 @@
       <nav class="nav" id="nav">
         <img src="../Images/1000031782-removebg-preview.png" />
         <a href="../index.html">Home</a>
-        <a href="DS.html">Practise</a>
+        <a href="DS.html">Practice</a>
         <a href="../index.html#About">About</a>
         <a href="#Contact">Contact</a>
       </nav>
@@ -1398,11 +1398,87 @@ Second Word : how and its Starting Index : 6
           <div class="code-box">
             <div class="code">
               <h4>Code :</h4>
-              <pre></pre>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;conio.h>
+#include &lt;string.h>
+
+#define SCREEN_WIDTH 80
+
+void printLeftAlign(char str[])
+{
+    printf("%s", str);
+}
+
+void printCenterAlign(char str[])
+{
+    int len = strlen(str);
+    int spaces = (SCREEN_WIDTH - len) / 2;
+    for (int i = 0; i < spaces; i++)
+    {
+        printf(" ");
+    }
+    printf("%s", str);
+}
+
+void printRightAlign(char str[])
+{
+    int len = strlen(str);
+    int spaces = SCREEN_WIDTH - len;
+    for (int i = 0; i < spaces; i++)
+    {
+        printf(" ");
+    }
+    printf("%s", str);
+}
+
+int main()
+{
+    char str[100];
+    int option;
+
+    printf("Enter a string to display: ");
+    gets(str);
+
+    printf("\nChoose text alignment:\n");
+    printf("1. Left Align\n");
+    printf("2. Center Align\n");
+    printf("3. Right Align\n");
+    printf("Enter your choice (1/2/3): ");
+    scanf("%d", &option);
+
+    switch (option)
+    {
+    case 1:
+        printLeftAlign(str);
+        break;
+    case 2:
+        printCenterAlign(str);
+        break;
+    case 3:
+        printRightAlign(str);
+        break;
+    default:
+        printf("Invalid option!\n");
+    }
+
+    getch();
+    return 0;
+}
+              </pre>
             </div>
             <div class="output">
               <h4>Output :</h4>
-              <pre></pre>
+              <pre>
+Enter a string to display: hello
+
+Choose text alignment:
+1. Left Align
+2. Center Align
+3. Right Align
+Enter your choice (1/2/3): 1
+hello
+              </pre>
             </div>
           </div>
         </div>

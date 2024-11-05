@@ -11,7 +11,7 @@
       <nav class="nav" id="nav">
         <img src="../Images/1000031782-removebg-preview.png" />
         <a href="../index.html">Home</a>
-        <a href="DS.html">Practise</a>
+        <a href="DS.html">Practice</a>
         <a href="../index.html#About">About</a>
         <a href="#Contact">Contact</a>
       </nav>
@@ -580,11 +580,66 @@ Searched Element found at 4 index
           <div class="code-box">
             <div class="code">
               <h4>Code :</h4>
-              <pre></pre>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+int linearSearch(int arr[], int size, int ele)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] == ele)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+int main()
+{
+    int arr[maxSize];
+    int size;
+    int search;
+    int result;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ELEMENT %d : ", i);
+        scanf("%d", &arr[i]);
+    }
+    printf("ENTER ELEMENT TO BE SEARCHED : ");
+    scanf("%d", &search);
+    start = clock();
+    result = linearSearch(arr, size, search);
+    if (result >= 0)
+    {
+        printf("ELEMENT FOUND AT INDEX %d\n", result);
+    }
+    else
+    {
+        printf("ELEMENT NOT FOUND\n");
+    }
+    end = clock();
+    printf("Executed in %fs\n", (double)(end - start) / CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
             </div>
             <div class="output">
               <h4>Output :</h4>
-              <pre></pre>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ELEMENT 0 : 10
+ENTER ELEMENT 1 : 20
+ENTER ELEMENT 2 : 30
+ENTER ELEMENT 3 : 40
+ENTER ELEMENT 4 : 50
+ENTER ELEMENT TO BE SEARCHED : 30
+ELEMENT FOUND AT INDEX 2
+Executed in 0.000002s
+              </pre>
             </div>
           </div>
         </div>
@@ -598,11 +653,79 @@ Searched Element found at 4 index
           <div class="code-box">
             <div class="code">
               <h4>Code :</h4>
-              <pre></pre>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+int binarySearch(int arr[], int size, int ele)
+{
+    int low = 0, high = size - 1, mid;
+    while (low <= high)
+    {
+        mid = (high + low) / 2;
+        if (arr[mid] == ele)
+        {
+            return mid;
+        }
+        else
+        {
+            if (arr[mid] > ele)
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+    }
+    return -1;
+}
+int main()
+{
+    int arr[maxSize];
+    int size;
+    int search;
+    int result;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ELEMENT %d : ", i);
+        scanf("%d", &arr[i]);
+    }
+    printf("ENTER ELEMENT TO BE SEARCHED : ");
+    scanf("%d", &search);
+    start = clock();
+    result = binarySearch(arr, size, search);
+    if (result >= 0)
+    {
+        printf("ELEMENT FOUND AT INDEX %d\n", result);
+    }
+    else
+    {
+        printf("ELEMENT NOT FOUND\n");
+    }
+    end = clock();
+    printf("Executed in %fs\n", (double)(end - start) / CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
             </div>
             <div class="output">
               <h4>Output :</h4>
-              <pre></pre>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ELEMENT 0 : 10
+ENTER ELEMENT 1 : 20
+ENTER ELEMENT 2 : 30
+ENTER ELEMENT 3 : 40
+ENTER ELEMENT 4 : 50
+ENTER ELEMENT TO BE SEARCHED : 30
+ELEMENT FOUND AT INDEX 2
+Executed in 0.000001s
+              </pre>
             </div>
           </div>
         </div>

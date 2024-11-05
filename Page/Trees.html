@@ -11,7 +11,7 @@
       <nav class="nav" id="nav">
         <img src="../Images/1000031782-removebg-preview.png" />
         <a href="../index.html">Home</a>
-        <a href="DS.html">Practise</a>
+        <a href="DS.html">Practice</a>
         <a href="../index.html#About">About</a>
         <a href="#Contact">Contact</a>
       </nav>
@@ -2259,8 +2259,8 @@ struct BSTNode
 
 struct BTNode *createBTNode(int value)
 {
-    struct BTNode *newNode = (struct BTNode *)malloc(sizeof(struct 
-    BTNode));
+    struct BTNode *newNode = (struct BTNode *)
+    malloc(sizeof(struct BTNode));
     newNode->data = value;
     newNode->left = NULL;
     newNode->right = NULL;
@@ -2385,9 +2385,10 @@ int main()
             <div class="output">
               <h4>Output :</h4>
               <pre>
-Binary Tree created. Converting to Binary Search Tree...
-In-order Traversal of the Binary Search Tree:
-2 5 7 10 15 20
+Binary Tree created. Converting to
+ Binary Search Tree...
+In-order Traversal of the Binary Search 
+Tree: 2 5 7 10 15 20
 
                                           </pre
               >
@@ -2570,7 +2571,8 @@ Menu:
 3. Exit
 Enter your choice: 2
 Enter value of k: 5
-Invalid value of k: 5. There are only 4 elements in the BST.
+Invalid value of k: 5. There are 
+only 4 elements in the BST.
 
 Menu:
 1. Insert
@@ -2760,7 +2762,8 @@ Menu:
 3. Exit
 Enter your choice: 2
 Enter value of k: 5
-Invalid value of k: 5. There are only 4 elements in the BST.
+Invalid value of k: 5. There are only 
+4 elements in the BST.
 
 Menu:
 1. Insert
@@ -2904,7 +2907,8 @@ Enter the number of elements: 5
 Enter the preorder traversal elements:
 10 5 1 7 40
 
-Postorder traversal of the constructed tree: 1 7 5 40 10
+Postorder traversal of the constructed 
+tree: 1 7 5 40 10
  
                                           </pre
               >
@@ -3003,9 +3007,11 @@ int main()
             <div class="output">
               <h4>Output :</h4>
               <pre>
-Enter the number of elements in preorder traversal: 5
+Enter the number of elements in preorder 
+traversal: 5
 Enter the preorder traversal: 10 5 1 7 40
-Inorder traversal of the constructed BST: 1 5 7 10 40
+Inorder traversal of the constructed BST:
+ 1 5 7 10 40
                                           </pre
               >
             </div>
@@ -3070,7 +3076,8 @@ minValue, int maxValue, int n)
 struct TreeNode *constructBST(int postorder[], int n)
 {
     int index = n - 1;
-    return constructBSTUtil(postorder, &index, INT_MIN, INT_MAX, n);
+    return constructBSTUtil(postorder, &index, INT_MIN, 
+    INT_MAX, n);
 }
 
 void inorderTraversal(struct TreeNode *root)
@@ -3086,8 +3093,8 @@ void inorderTraversal(struct TreeNode *root)
 int main()
 {
     int n;
-    printf("Enter the number of nodes in the postorder traversal: 
-    ");
+    printf("Enter the number of nodes in the postorder 
+    traversal: ");
     scanf("%d", &n);
 
     int postorder[n];
@@ -3111,9 +3118,12 @@ int main()
             <div class="output">
               <h4>Output :</h4>
               <pre>
-Enter the number of nodes in the postorder traversal: 5
-Enter the postorder traversal elements: 1 7 5 40 10
-Inorder traversal of the constructed BST: 1 5 7 10 40
+Enter the number of nodes in the postorder 
+traversal: 5
+Enter the postorder traversal elements: 
+1 7 5 40 10
+Inorder traversal of the constructed BST: 
+1 5 7 10 40
 </pre
               >
             </div>
@@ -3223,10 +3233,11 @@ int main()
             <div class="output">
               <h4>Output :</h4>
               <pre>
-Enter the number of nodes for the strictly binary tree: 7
+Enter the number of nodes for the strictly 
+binary tree: 7
 Enter the values for the nodes: 1 2 3 4 5 6 7
-Inorder traversal of the constructed strictly binary tree: 4 2 5 1 
-6 3 7
+Inorder traversal of the constructed strictly 
+binary tree: 4 2 5 1 6 3 7
 </pre
               >
             </div>
@@ -3331,10 +3342,12 @@ int main()
             <div class="output">
               <h4>Output :</h4>
               <pre>
-Enter the number of nodes for the almost complete binary tree: 7
-Enter the values for the nodes: 1 2 3 4 5 6 7
-Inorder traversal of the constructed almost complete binary tree: 4 
-2 5 1 6 3 7
+Enter the number of nodes for the almost 
+complete binary tree: 7
+Enter the values for the nodes: 
+1 2 3 4 5 6 7
+Inorder traversal of the constructed 
+almost complete binary tree: 4 2 5 1 6 3 7
 
               </pre>
             </div>
@@ -3437,10 +3450,12 @@ int main()
             <div class="output">
               <h4>Output :</h4>
               <pre>
-Enter the number of nodes for the complete binary tree: 7
-Enter the values for the nodes: 1 2 3 4 5 6 7
-Inorder traversal of the constructed complete binary tree: 4 2 5 1 
-6 3 7
+Enter the number of nodes for the 
+complete binary tree: 7
+Enter the values for the nodes: 
+1 2 3 4 5 6 7
+Inorder traversal of the constructed 
+complete binary tree: 4 2 5 1 6 3 7
               </pre>
             </div>
           </div>

@@ -11,7 +11,7 @@
       <nav class="nav" id="nav">
         <img src="../Images/1000031782-removebg-preview.png" />
         <a href="../index.html">Home</a>
-        <a href="DS.html">Practise</a>
+        <a href="DS.html">Practice</a>
         <a href="../index.html#About">About</a>
         <a href="#Contact">Contact</a>
       </nav>
@@ -2690,11 +2690,140 @@ Queue after reversing first 3 elements
           <div class="code-box">
             <div class="code">
               <h4>Code :</h4>
-              <pre></pre>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define MAX 100
+
+typedef struct
+{
+    int items[MAX];
+    int front;
+    int rear;
+} Queue;
+
+Queue *createQueue()
+{
+    Queue *q = (Queue *)malloc(sizeof(Queue));
+    q->front = -1;
+    q->rear = -1;
+    return q;
+}
+
+int isEmpty(Queue *q)
+{
+    return q->front == -1;
+}
+
+int isFull(Queue *q)
+{
+    return q->rear == MAX - 1;
+}
+
+void enqueue(Queue *q, int value)
+{
+    if (isFull(q))
+    {
+        printf("Queue is full!\n");
+        return;
+    }
+    if (isEmpty(q))
+    {
+        q->front = 0;
+    }
+    q->rear++;
+    q->items[q->rear] = value;
+}
+
+int dequeue(Queue *q)
+{
+    if (isEmpty(q))
+    {
+        printf("Queue is empty!\n");
+        return -1;
+    }
+    int item = q->items[q->front];
+    q->front++;
+    if (q->front > q->rear)
+    {
+        q->front = q->rear = -1;
+    }
+    return item;
+}
+
+void reverseQueue(Queue *q)
+{
+    if (isEmpty(q))
+    {
+        return;
+    }
+
+    int stack[MAX];
+    int top = -1;
+
+    while (!isEmpty(q))
+    {
+        stack[++top] = dequeue(q);
+    }
+
+    while (top != -1)
+    {
+        enqueue(q, stack[top--]);
+    }
+}
+
+void printQueue(Queue *q)
+{
+    if (isEmpty(q))
+    {
+        printf("Queue is empty!\n");
+        return;
+    }
+    for (int i = q->front; i <= q->rear; i++)
+    {
+        printf("%d ", q->items[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    Queue *q = createQueue();
+    int n, value;
+
+    printf("Enter the number of elements in the queue: ");
+    scanf("%d", &n);
+    printf("Enter the elements: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &value);
+        enqueue(q, value);
+    }
+
+    printf("Queue before reversing: ");
+    printQueue(q);
+
+    reverseQueue(q);
+
+    printf("Queue after reversing: ");
+    printQueue(q);
+
+    free(q);
+
+    return 0;
+}
+</pre
+              >
             </div>
             <div class="output">
               <h4>Output :</h4>
-              <pre></pre>
+              <pre>
+Enter the number of elements in the queue: 5
+Enter the elements: 1 2 3 4 5
+Queue before reversing: 1 2 3 4 5 
+Queue after reversing: 5 4 3 2 1 
+              </pre>
             </div>
           </div>
         </div>
@@ -2704,11 +2833,137 @@ Queue after reversing first 3 elements
           <div class="code-box">
             <div class="code">
               <h4>Code :</h4>
-              <pre></pre>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define MAX 100
+
+typedef struct
+{
+    int x[MAX * MAX];
+    int y[MAX * MAX];
+    int front;
+    int rear;
+} Queue;
+
+Queue *createQueue()
+{
+    Queue *q = (Queue *)malloc(sizeof(Queue));
+    q->front = 0;
+    q->rear = 0;
+    return q;
+}
+
+void enqueue(Queue *q, int x, int y)
+{
+    q->x[q->rear] = x;
+    q->y[q->rear] = y;
+    q->rear++;
+}
+
+void dequeue(Queue *q, int *x, int *y)
+{
+    *x = q->x[q->front];
+    *y = q->y[q->front];
+    q->front++;
+}
+
+int isEmpty(Queue *q)
+{
+    return q->front == q->rear;
+}
+
+int orangesRotting(int grid[MAX][MAX], int n, int m)
+{
+    Queue *q = createQueue();
+    int freshOranges = 0;
+    int time = -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (grid[i][j] == 2)
+            {
+                enqueue(q, i, j);
+            }
+            else if (grid[i][j] == 1)
+            {
+                freshOranges++;
+            }
+        }
+    }
+
+    int directions[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    while (!isEmpty(q))
+    {
+        int size = q->rear - q->front;
+        time++;
+
+        for (int i = 0; i < size; i++)
+        {
+            int x, y;
+            dequeue(q, &x, &y);
+
+            for (int d = 0; d < 4; d++)
+            {
+                int newX = x + directions[d][0];
+                int newY = y + directions[d][1];
+
+                if (newX >= 0 && newX < n && newY >= 0 
+                && newY < m && grid[newX][newY] == 1)
+                {
+                    grid[newX][newY] = 2;
+                    freshOranges--;
+                    enqueue(q, newX, newY);
+                }
+            }
+        }
+    }
+
+    return freshOranges == 0 ? time : -1;
+}
+
+int main()
+{
+    int grid[MAX][MAX];
+    int n, m;
+
+    printf("Enter dimensions of grid (n m): ");
+    scanf("%d %d", &n, &m);
+
+    printf("Enter the grid values (0 for empty, 1 for 
+    fresh orange, 2 for rotten orange):\n");
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            scanf("%d", &grid[i][j]);
+        }
+    }
+
+    int result = orangesRotting(grid, n, m);
+    printf("The earliest time after which all 
+    oranges are rotten: %d\n", result);
+
+    return 0;
+}
+
+              </pre>
             </div>
             <div class="output">
               <h4>Output :</h4>
-              <pre></pre>
+              <pre>
+Enter dimensions of grid (n m): 3 3
+Enter the grid values (0 for empty, 
+1 for fresh orange, 2 for rotten orange):
+2 1 1
+1 0 2
+1 1 2
+The earliest time after which all oranges are rotten: 2
+              </pre>
             </div>
           </div>
         </div>
