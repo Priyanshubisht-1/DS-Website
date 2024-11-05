@@ -1,0 +1,3073 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../CSS/ALL.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav" id="nav">
+        <img src="../Images/1000031782-removebg-preview.png" />
+        <a href="../index.html">Home</a>
+        <a href="DS.html">Practise</a>
+        <a href="../index.html#About">About</a>
+        <a href="#Contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="Sidebar">
+        <span>Linked List</span>
+
+        <div>
+          <p>1.</p>
+          <a href="Linked-list.html#links1"
+            >Implement the operations of single linked list storing integer
+            values.</a
+          >
+        </div>
+        <div>
+          <p>2.</p>
+          <a href="Linked-list.html#links2"
+            >Implement the operations of single circular linked list storing
+            integer values.</a
+          >
+        </div>
+        <div>
+          <p>3.</p>
+          <a href="Linked-list.html#links3"
+            >Implement the operations of doubly linked list storing integer
+            values.</a
+          >
+        </div>
+        <div>
+          <p>4.</p>
+          <a href="Linked-list.html#links4"
+            >Implement the operations of doubly circular linked list storing
+            integer values.</a
+          >
+        </div>
+        <div>
+          <p>5.</p>
+          <a href="Linked-list.html#links5"
+            >Implement the operations of single linked list storing string
+            values.</a
+          >
+        </div>
+        <div>
+          <p>6.</p>
+          <a href="Linked-list.html#links6"
+            >Implement the operations of single circular linked list storing
+            string values.</a
+          >
+        </div>
+        <div>
+          <p>7.</p>
+          <a href="Linked-list.html#links7"
+            >Implement the operations of doubly linked list storing string
+            values.</a
+          >
+        </div>
+        <div>
+          <p>8.</p>
+          <a href="Linked-list.html#links8"
+            >Implement the operations of doubly circular linked list storing
+            string values.</a
+          >
+        </div>
+        <div>
+          <p>9.</p>
+          <a href="Linked-list.html#links9"
+            >Enter the 2 polynomial equations dynamically, add them and display
+            the answer.</a
+          >
+        </div>
+        <div>
+          <p>10.</p>
+          <a href="Linked-list.html#links10"
+            >Enter the 2 polynomial equations dynamically, subtract them and
+            display the answer.</a
+          >
+        </div>
+        <div>
+          <p>11.</p>
+          <a href="Linked-list.html#links11"
+            >Enter the 2 polynomial equations dynamically, multiply them and
+            display the answer.</a
+          >
+        </div>
+      </section>
+
+      <section class="Content">
+        <h2>Linked List</h2>
+        <div id="links1" class="Content-box">
+          <h3>
+            1. Implement the operations of single linked list storing integer
+            values (insert at begin, insert at pos, insert at end, delete at
+            begin, delete at end, delete at pos, isEmpty, isFull, display,
+            search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+void InsertAtBeg(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = v->first;
+        if (v->first == NULL)
+            v->last = t;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = NULL;
+        if (v->first == NULL)
+            v->first = t;
+        else
+            v->last->next = t;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, int x, int pos)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else
+    {
+        int i;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos && pv; i++)
+        {
+            pv = p;
+            if (p != NULL)
+                p = p->next;
+        }
+
+        if (p != NULL)
+        {
+            t->data = x;
+            t->next = pv->next;
+            pv->next = t;
+        }
+        else if (pv != NULL)
+            InsertAtEnd(v, x);
+        else
+            printf("Invalid Position!\n");
+    }
+}
+
+int DeleteAtBeg(struct LinkList *v)
+{
+    int x = -1;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        if (v->first == NULL)
+            v->last = NULL;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtEnd(struct LinkList *v)
+{
+    int x = -1;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *pv = v->first, *t = v->last;
+        if (v->first == v->last)
+            v->first = v->last = NULL;
+        else
+        {
+            while (pv->next != t)
+                pv = pv->next;
+            pv->next = NULL;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtPos(struct LinkList *v, int pos)
+{
+    int x = -1;
+    if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else
+    {
+        int i;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos && p; i++)
+        {
+            pv = p;
+            p = p->next;
+        }
+
+        if (p != NULL)
+        {
+            t = p;
+            if (p->next != NULL)
+                pv->next = p->next;
+            else
+            {
+                v->last = pv;
+                pv->next = NULL;
+            }
+            x = t->data;
+            free(t);
+        }
+        else
+            printf("Invalid Position!\n");
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, int key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            if (p->data == key)
+                return 1;
+            p = p->next;
+        }
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        while (p != NULL)
+        {
+            printf("%d ", p->data);
+            p = p->next;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, 30);
+    InsertAtBeg(&l, 20);
+    InsertAtBeg(&l, 10);
+    InsertAtEnd(&l, 40);
+    InsertAtEnd(&l, 50);
+    InsertAtEnd(&l, 60);
+    InsertAtPos(&l, 55, 6);
+    InsertAtPos(&l, 35, 4);
+    InsertAtPos(&l, 5, 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+    printf("Deleted value at Beginning : %d\n", 
+    DeleteAtBeg(&l));
+    printf("Deleted value at Last : %d\n", 
+    DeleteAtEnd(&l));
+    printf("Deleted value at Position %d : %d\n", 6, 
+    DeleteAtPos(&l, 6));
+    Display(l);
+    printf("Is %d present in Linked List ? %s", 254, 
+    Search(l, 254) ? "Yes" : "No");
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position!
+Linked List : 10 20 30 35 40 50 55 60 
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : 10
+Deleted value at Last : 60
+Deleted value at Position 6 : 55
+Linked List : 20 30 35 40 50
+Is 254 present in Linked List ? No
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links2" class="Content-box">
+          <h3>
+            2. Implement the operations of single circular linked list storing
+            integer values (insert at begin, insert at pos, insert at end,
+            delete at begin, delete at end, delete at pos, isEmpty, isFull,
+            display, search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+void InsertAtBeg(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = v->first;
+        if (v->first == NULL)
+            v->last = t;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = v->first;
+        if (v->first == NULL)
+        {
+            v->first = t;
+            t->next = t;
+        }
+        else
+            v->last->next = t;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, int x, int pos)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else
+    {
+        int i, fp = 0;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos && (pv != v->first || fp == 0); i++)
+        {
+            pv = p;
+            if (fp == 0 || p != v->first)
+                p = p->next;
+            if (pv != v->first)
+                fp = 1;
+        }
+
+        if (p != v->first)
+        {
+            t->data = x;
+            t->next = pv->next;
+            pv->next = t;
+        }
+        else if (pv != v->first)
+            InsertAtEnd(v, x);
+        else
+            printf("Invalid Position!\n");
+    }
+}
+
+int DeleteAtBeg(struct LinkList *v)
+{
+    int x = -1;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        v->last->next = v->first;
+        if (v->first == NULL)
+            v->last = NULL;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtEnd(struct LinkList *v)
+{
+    int x = -1;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *pv = v->first, *t = v->last;
+        if (pv == t)
+            v->first = v->last = NULL;
+        else
+        {
+
+            while (pv->next != t)
+                pv = pv->next;
+            pv->next = t->next;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtPos(struct LinkList *v, int pos)
+{
+    int x = -1;
+    if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else
+    {
+        int i, fp = 0;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos && (pv != v->first || fp == 0); i++)
+        {
+            pv = p;
+            if (fp == 0 || p != v->first)
+                p = p->next;
+            if (pv != v->first)
+                fp = 1;
+        }
+
+        if (p != v->first)
+        {
+            t = p;
+            pv->next = p->next;
+            if (p->next == v->first)
+                v->last = pv;
+            x = t->data;
+            free(t);
+        }
+        else
+            printf("Invalid Position!\n");
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, int key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        do
+        {
+            if (key == p->data)
+                return 1;
+            p = p->next;
+        } while (p != v.first);
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        do
+        {
+            printf("%d ", p->data);
+            p = p->next;
+        } while (p != v.first);
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, 30);
+    InsertAtBeg(&l, 20);
+    InsertAtBeg(&l, 10);
+    InsertAtEnd(&l, 40);
+    InsertAtEnd(&l, 50);
+    InsertAtEnd(&l, 60);
+    InsertAtPos(&l, 55, 6);
+    InsertAtPos(&l, 35, 4);
+    InsertAtPos(&l, 5, 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+    printf("Deleted value at Beginning : %d\n", 
+    DeleteAtBeg(&l));
+    printf("Deleted value at Last : %d\n", DeleteAtEnd(&l));
+    printf("Deleted value at Position %d : %d\n", 4, 
+    DeleteAtPos(&l, 4));
+    Display(l);
+    printf("First Element : %d\n", l.last->next->data);
+    printf("Is %d present in Linked List ? %s", 20, 
+    Search(l, 20) ? "Yes" : "No");
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position!
+Linked List : 10 20 30 35 40 50 55 60 
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : 10
+Deleted value at Last : 60
+Deleted value at Position 4 : 40
+Linked List : 20 30 35 50 55
+First Element : 7017912
+Is 20 present in Linked List ? Yes
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links3" class="Content-box">
+          <h3>
+            3. Implement the operations of doubly linked list storing integer
+            values (insert at begin, insert at pos, insert at end, delete at
+            begin, delete at end, delete at pos, isEmpty, isFull, display,
+            search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    struct Node *prev;
+    int data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+int count(struct LinkList v)
+{
+    int count = 0;
+    struct Node *p = v.first;
+    while (p != NULL)
+    {
+        p = p->next;
+        count++;
+    }
+    return count;
+}
+
+void InsertAtBeg(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->prev = NULL;
+        t->next = v->first;
+        if (v->first == NULL)
+            v->last = t;
+        else
+            v->first->prev = t;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->prev = v->last;
+        t->next = NULL;
+        if (v->first == NULL)
+            v->first = t;
+        else
+            v->last->next = t;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, int x, int pos)
+{
+    int c = count(*v) + 1;
+    if (pos < 1 || pos > c)
+    {
+        printf("Invalid Position\n");
+        return;
+    }
+
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+    if (t == NULL)
+        printf("Linked List is Full\n");
+
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else if (pos == c)
+        InsertAtEnd(v, x);
+    else
+    {
+        int i;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        pv = p->prev;
+        t->prev = pv;
+        t->next = pv->next;
+        t->next->prev = t;
+        pv->next = t;
+    }
+}
+
+int DeleteAtBeg(struct LinkList *v)
+{
+    int x = -1;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        if (v->first == NULL)
+            v->last = NULL;
+        else
+            v->first->prev = NULL;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtEnd(struct LinkList *v)
+{
+    int x = -1;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *pv, *t = v->last;
+        if (v->first == v->last)
+            v->first = v->last = NULL;
+        else
+        {
+            pv = t->prev;
+            v->last = pv;
+            pv->next = NULL;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtPos(struct LinkList *v, int pos)
+{
+    int x = -1, c = count(*v);
+    if (pos < 1 || pos > c)
+        printf("Invalid Position\n");
+
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else if (pos == c)
+        x = DeleteAtEnd(v);
+    else
+    {
+        int i;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        t = p;
+        pv = p->prev;
+        pv->next = p->next;
+        p->next->prev = pv;
+
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, int key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            if (p->data == key)
+                return 1;
+            p = p->next;
+        }
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        while (p != NULL)
+        {
+            printf("%d ", p->data);
+            p = p->next;
+        }
+        printf("\nReverse Linked List : ");
+        p = v.last;
+        while (p != NULL)
+        {
+            printf("%d ", p->data);
+            p = p->prev;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, 30);
+    InsertAtBeg(&l, 20);
+    InsertAtBeg(&l, 10);
+    InsertAtEnd(&l, 40);
+    InsertAtEnd(&l, 50);
+    InsertAtEnd(&l, 60);
+    InsertAtPos(&l, 55, 6);
+    InsertAtPos(&l, 35, 4);
+    InsertAtPos(&l, 5, 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+    printf("Deleted value at Beginning : %d\n", DeleteAtBeg(&l));
+    printf("Deleted value at Last : %d\n", DeleteAtEnd(&l));
+    printf("Deleted value at Position %d : %d\n", 4, 
+    DeleteAtPos(&l, 4));
+    Display(l);
+    printf("Is %d present in Linked List ? %s", 20, 
+    Search(l, 20) ? "Yes" : "No");
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position
+Linked List : 10 20 30 35 40 50 55 60 
+Reverse Linked List : 60 55 50 40 35 30 20 10
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : 10
+Deleted value at Last : 60
+Deleted value at Position 4 : 40
+Linked List : 20 30 35 50 55
+Reverse Linked List : 55 50 35 30 20
+Is 20 present in Linked List ? Yes
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links4" class="Content-box">
+          <h3>
+            4. Implement the operations of doubly circular linked list storing
+            integer values (insert at begin, insert at pos, insert at end,
+            delete at begin, delete at end, delete at pos, isEmpty, isFull,
+            display, search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    struct Node *prev;
+    int data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+int count(struct LinkList v)
+{
+    int c = 0;
+    struct Node *p = v.first;
+    do
+    {
+        c++;
+        p = p->next;
+    } while (p != v.first);
+    return c;
+}
+
+void InsertAtBeg(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        if (v->first == NULL)
+            v->last = t;
+        else
+        {
+            v->first->prev = t;
+            v->last->next = t;
+        }
+        t->prev = v->last;
+        t->next = v->first;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        if (v->first == NULL)
+            v->first = t;
+        else
+        {
+            v->last->next = t;
+            v->first->prev = t;
+        }
+        t->prev = v->last;
+        t->next = v->first;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, int x, int pos)
+{
+    int c = count(*v) + 1;
+    if (pos < 1 || pos > c)
+    {
+        printf("Invalid Position\n");
+        return;
+    }
+
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+
+    if (t == NULL)
+        printf("Linked List is Full\n");
+
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else if (pos == c)
+        InsertAtEnd(v, x);
+    else
+    {
+        int i;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        pv = p->prev;
+        t->prev = pv;
+        t->next = pv->next;
+        t->next->prev = t;
+        pv->next = t;
+    }
+}
+
+int DeleteAtBeg(struct LinkList *v)
+{
+    int x = -1;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        if (v->first == NULL)
+            v->last = NULL;
+        else
+        {
+            v->first->prev = v->last;
+            v->last->next = v->first;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtEnd(struct LinkList *v)
+{
+    int x = -1;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->last;
+        if (v->first == v->last)
+            v->first = v->last = NULL;
+        else
+        {
+            v->last = t->prev;
+            t->prev->next = v->first;
+            v->first->prev = v->last;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int DeleteAtPos(struct LinkList *v, int pos)
+{
+    int x = -1, c = count(*v);
+    if (pos < 1 || pos > c)
+        printf("Invalid Position");
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else if (pos == c)
+        x = DeleteAtEnd(v);
+    else
+    {
+        int i;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        t = p;
+        pv = t->prev;
+        pv->next = p->next;
+        p->next->prev = pv;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, int key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        do
+        {
+            if (key == p->data)
+                return 1;
+            p = p->next;
+        } while (p != v.first);
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        do
+        {
+            printf("%d ", p->data);
+            p = p->next;
+        } while (p != v.first);
+        printf("\nReverse Linked List : ");
+        p = v.last;
+        do
+        {
+            printf("%d ", p->data);
+            p = p->prev;
+
+        } while (p != v.last);
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, 30);
+    InsertAtBeg(&l, 20);
+    InsertAtBeg(&l, 10);
+    InsertAtEnd(&l, 40);
+    InsertAtEnd(&l, 50);
+    InsertAtEnd(&l, 60);
+    InsertAtPos(&l, 55, 6);
+    InsertAtPos(&l, 35, 4);
+    InsertAtPos(&l, 5, 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+    printf("Deleted value at Beginning : %d\n", DeleteAtBeg(&l));
+    printf("Deleted value at Last : %d\n", DeleteAtEnd(&l));
+    printf("Deleted value at Position 4 : %d\n", DeleteAtPos(&l, 4));
+    Display(l);
+    printf("First Element : %d\n", l.last->next->data);
+    printf("Last Element : %d\n", l.first->prev->data);
+    printf("Is %d present in Linked List ? %s", 20, 
+    Search(l, 20) ? "Yes" : "No");
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position
+Linked List : 10 20 30 35 40 50 55 60 
+Reverse Linked List : 60 55 50 40 35 30 20 10
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : 10
+Deleted value at Last : 60
+Deleted value at Position 4 : 40
+Linked List : 20 30 35 50 55
+Reverse Linked List : 55 50 35 30 20
+First Element : 20
+Last Element : 55
+Is 20 present in Linked List ? Yes
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links5" class="Content-box">
+          <h3>
+            5. Implement the operations of single linked list storing string
+            values (insert at begin, insert at pos, insert at end, delete at
+            begin, delete at end, delete at pos, isEmpty, isFull, display,
+            search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    char *data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+void InsertAtBeg(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = v->first;
+        if (v->first == NULL)
+            v->last = t;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = NULL;
+        if (v->first == NULL)
+            v->first = t;
+        else
+            v->last->next = t;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, char *x, int pos)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else
+    {
+        int i;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos && pv; i++)
+        {
+            pv = p;
+            if (p != NULL)
+                p = p->next;
+        }
+
+        if (p != NULL)
+        {
+            t->data = x;
+            t->next = pv->next;
+            pv->next = t;
+        }
+        else if (pv != NULL)
+            InsertAtEnd(v, x);
+        else
+            printf("Invalid Position!\n");
+    }
+}
+
+char *DeleteAtBeg(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        if (v->first == NULL)
+            v->last = NULL;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtEnd(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *pv = v->first, *t = v->last;
+        if (v->first == v->last)
+            v->first = v->last = NULL;
+        else
+        {
+            while (pv->next != t)
+                pv = pv->next;
+            pv->next = NULL;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtPos(struct LinkList *v, int pos)
+{
+    char *x = NULL;
+    if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else
+    {
+        int i;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos && p; i++)
+        {
+            pv = p;
+            p = p->next;
+        }
+
+        if (p != NULL)
+        {
+            t = p;
+            if (p->next != NULL)
+                pv->next = p->next;
+            else
+            {
+                v->last = pv;
+                pv->next = NULL;
+            }
+            x = t->data;
+            free(t);
+        }
+        else
+            printf("Invalid Position!\n");
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, char *key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            if (p->data[0] == key[0])
+            {
+                int i = 1;
+                while (p->data[i] == key[i] && key[i] != '\0')
+                    i++;
+                if (key[i] == '\0')
+                    return 1;
+            }
+            p = p->next;
+        }
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        while (p != NULL)
+        {
+            printf("%s ", p->data);
+            p = p->next;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, "Cc");
+    InsertAtBeg(&l, "Bb");
+    InsertAtBeg(&l, "Aa");
+    InsertAtEnd(&l, "Ee");
+    InsertAtEnd(&l, "Ff");
+    InsertAtEnd(&l, "Hh");
+    InsertAtPos(&l, "Gg", 6);
+    InsertAtPos(&l, "Dd", 4);
+    InsertAtPos(&l, "Zz", 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+
+    printf("Deleted value at Beginning : %s\n", DeleteAtBeg(&l));
+    printf("Deleted value at End : %s\n", DeleteAtEnd(&l));
+    printf("Deleted value at %d position : %s\n", 6, 
+    DeleteAtPos(&l, 6));
+
+    Display(l);
+    printf("Is %s present in Linked List ? %s", "Ee", 
+    Search(l, "Ee") ? "Yes" : "No");
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position!
+Linked List : Aa Bb Cc Dd Ee Ff Gg Hh 
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : Aa
+Deleted value at End : Hh
+Deleted value at 6 position : Gg
+Linked List : Bb Cc Dd Ee Ff
+Is Ee present in Linked List ? Yes
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links6" class="Content-box">
+          <h3>
+            6. Implement the operations of single circular linked list storing
+            string values (insert at begin, insert at pos, insert at end, delete
+            at begin, delete at end, delete at pos, isEmpty, isFull, display,
+            search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    char *data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+void InsertAtBeg(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = v->first;
+        if (v->first == NULL)
+            v->last = t;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->next = v->first;
+        if (v->first == NULL)
+        {
+            v->first = t;
+            t->next = t;
+        }
+        else
+            v->last->next = t;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, char *x, int pos)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else
+    {
+        int i, fp = 0;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos && (pv != v->first || fp == 0); i++)
+        {
+            pv = p;
+            if (fp == 0 || p != v->first)
+                p = p->next;
+            if (pv != v->first)
+                fp = 1;
+        }
+
+        if (p != v->first)
+        {
+            t->data = x;
+            t->next = pv->next;
+            pv->next = t;
+        }
+        else if (pv != v->first)
+            InsertAtEnd(v, x);
+        else
+            printf("Invalid Position!\n");
+    }
+}
+
+char *DeleteAtBeg(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        v->last->next = v->first;
+        if (v->first == NULL)
+            v->last = NULL;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtEnd(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *pv = v->first, *t = v->last;
+        if (pv == t)
+            v->first = v->last = NULL;
+        else
+        {
+            while (pv->next != t)
+                pv = pv->next;
+            pv->next = t->next;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtPos(struct LinkList *v, int pos)
+{
+    char *x = NULL;
+    if (pos <= 0)
+        printf("Invalid Position");
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else
+    {
+        int i, fp = 0;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos && (pv != v->first || fp == 0); i++)
+        {
+            pv = p;
+            if (fp == 0 || p != v->first)
+                p = p->next;
+            if (pv != v->first)
+                fp = 1;
+        }
+
+        if (p != v->first)
+        {
+            t = p;
+            pv->next = p->next;
+            if (p->next == v->first)
+                v->last = pv;
+            x = t->data;
+            free(t);
+        }
+        else
+            printf("Invalid Position!\n");
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, char *key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        do
+        {
+            if (p->data[0] == key[0])
+            {
+                int i = 1;
+                while (p->data[i] == key[i] && key[i] != '\0')
+                    i++;
+                if (key[i] == '\0')
+                    return 1;
+            }
+            p = p->next;
+        } while (p != v.first);
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        do
+        {
+            printf("%s ", p->data);
+            p = p->next;
+        } while (p != v.first);
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, "Cc");
+    InsertAtBeg(&l, "Bb");
+    InsertAtBeg(&l, "Aa");
+    InsertAtEnd(&l, "Ee");
+    InsertAtEnd(&l, "Ff");
+    InsertAtEnd(&l, "Hh");
+    InsertAtPos(&l, "Gg", 6);
+    InsertAtPos(&l, "Dd", 4);
+    InsertAtPos(&l, "Zz", 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+
+    printf("Deleted value at Beginning : %s\n", DeleteAtBeg(&l));
+    printf("Deleted value at End : %s\n", DeleteAtEnd(&l));
+    printf("Deleted value at %d position : %s\n", 6,
+     DeleteAtPos(&l, 6));
+
+    Display(l);
+    printf("First Element : %s\n", l.last->next->data);
+    printf("Is %s present in Linked List ? %s", "Ee", 
+    Search(l, "Ee") ? "Yes" : "No");
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position!
+Linked List : Aa Bb Cc Dd Ee Ff Gg Hh 
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : Aa
+Deleted value at End : Hh
+Deleted value at 6 position : Gg
+Linked List : Bb Cc Dd Ee Ff
+First Element : Bb
+Is Ee present in Linked List ? Yes
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="links7" class="Content-box">
+          <h3>
+            7. Implement the operations of doubly linked list storing string
+            values (insert at begin, insert at pos, insert at end, delete at
+            begin, delete at end, delete at pos, isEmpty, isFull, display,
+            search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    struct Node *prev;
+    char *data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+int count(struct LinkList v)
+{
+    int count = 0;
+    struct Node *p = v.first;
+    while (p != NULL)
+    {
+        p = p->next;
+        count++;
+    }
+    return count;
+}
+
+void InsertAtBeg(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->prev = NULL;
+        t->next = v->first;
+        if (v->first == NULL)
+            v->last = t;
+        else
+            v->first->prev = t;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        t->prev = v->last;
+        t->next = NULL;
+        if (v->first == NULL)
+            v->first = t;
+        else
+            v->last->next = t;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, char *x, int pos)
+{
+    int c = count(*v) + 1;
+    if (pos < 1 || pos > c)
+    {
+        printf("Invalid Position\n");
+        return;
+    }
+
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+    if (t == NULL)
+        printf("Linked List is Full\n");
+
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else if (pos == c)
+        InsertAtEnd(v, x);
+    else
+    {
+        int i;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        pv = p->prev;
+        t->prev = pv;
+        t->next = pv->next;
+        t->next->prev = t;
+        pv->next = t;
+    }
+}
+
+char *DeleteAtBeg(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        if (v->first == NULL)
+            v->last = NULL;
+        else
+            v->first->prev = NULL;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtEnd(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *pv, *t = v->last;
+        if (v->first == v->last)
+            v->first = v->last = NULL;
+        else
+        {
+            pv = t->prev;
+            v->last = pv;
+            pv->next = NULL;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtPos(struct LinkList *v, int pos)
+{
+    char *x = NULL;
+    int c = count(*v);
+    if (pos < 1 || pos > c)
+        printf("Invalid Position\n");
+
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else if (pos == c)
+        x = DeleteAtEnd(v);
+    else
+    {
+        int i;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        t = p;
+        pv = p->prev;
+        pv->next = p->next;
+        p->next->prev = pv;
+
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, char *key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            if (p->data[0] == key[0])
+            {
+                int i = 1;
+                while (p->data[i] == key[i] && key[i] != '\0')
+                    i++;
+                if (key[i] == '\0')
+                    return 1;
+            }
+            p = p->next;
+        }
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        while (p != NULL)
+        {
+            printf("%s ", p->data);
+            p = p->next;
+        }
+        printf("\nReverse Linked List : ");
+        p = v.last;
+        while (p != NULL)
+        {
+            printf("%s ", p->data);
+            p = p->prev;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, "Cc");
+    InsertAtBeg(&l, "Bb");
+    InsertAtBeg(&l, "Aa");
+    InsertAtEnd(&l, "Ee");
+    InsertAtEnd(&l, "Ff");
+    InsertAtEnd(&l, "Hh");
+    InsertAtPos(&l, "Gg", 6);
+    InsertAtPos(&l, "Dd", 4);
+    InsertAtPos(&l, "Zz", 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+
+    printf("Deleted value at Beginning : %s\n", DeleteAtBeg(&l));
+    printf("Deleted value at End : %s\n", DeleteAtEnd(&l));
+    printf("Deleted value at %d position : %s\n", 6, 
+    DeleteAtPos(&l, 6));
+
+    Display(l);
+    printf("Is %s present in Linked List ? %s", "Ee", 
+    Search(l, "Ee") ? "Yes" : "No");
+
+    return 0;
+}</pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of term : 3
+Invalid Position
+Linked List : Aa Bb Cc Dd Ee Ff Gg Hh 
+Reverse Linked List : Hh Gg Ff Ee Dd Cc Bb Aa
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : Aa
+Deleted value at End : Hh
+Deleted value at 6 position : Gg
+Linked List : Bb Cc Dd Ee Ff
+Reverse Linked List : Ff Ee Dd Cc Bb
+Is Ee present in Linked List ? Yes</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links8" class="Content-box">
+          <h3>
+            8. Implement the operations of doubly circular linked list storing
+            string values (insert at begin, insert at pos, insert at end, delete
+            at begin, delete at end, delete at pos, isEmpty, isFull, display,
+            search).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    struct Node *prev;
+    char *data;
+    struct Node *next;
+};
+
+struct LinkList
+{
+    struct Node *first;
+    struct Node *last;
+};
+
+int count(struct LinkList v)
+{
+    int c = 0;
+    struct Node *p = v.first;
+    do
+    {
+        c++;
+        p = p->next;
+    } while (p != v.first);
+    return c;
+}
+
+void InsertAtBeg(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        if (v->first == NULL)
+            v->last = t;
+        else
+        {
+            v->first->prev = t;
+            v->last->next = t;
+        }
+        t->prev = v->last;
+        t->next = v->first;
+        v->first = t;
+    }
+}
+
+void InsertAtEnd(struct LinkList *v, char *x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        printf("Linked List is Full\n");
+    else
+    {
+        t->data = x;
+        if (v->first == NULL)
+            v->first = t;
+        else
+        {
+            v->last->next = t;
+            v->first->prev = t;
+        }
+        t->prev = v->last;
+        t->next = v->first;
+        v->last = t;
+    }
+}
+
+void InsertAtPos(struct LinkList *v, char *x, int pos)
+{
+    int c = count(*v) + 1;
+    if (pos < 1 || pos > c)
+    {
+        printf("Invalid Position\n");
+        return;
+    }
+
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+
+    if (t == NULL)
+        printf("Linked List is Full\n");
+
+    else if (pos == 1)
+        InsertAtBeg(v, x);
+    else if (pos == c)
+        InsertAtEnd(v, x);
+    else
+    {
+        int i;
+        struct Node *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        pv = p->prev;
+        t->prev = pv;
+        t->next = pv->next;
+        t->next->prev = t;
+        pv->next = t;
+    }
+}
+
+char *DeleteAtBeg(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->first == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->first;
+        v->first = t->next;
+        if (v->first == NULL)
+            v->last = NULL;
+        else
+        {
+            v->first->prev = v->last;
+            v->last->next = v->first;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtEnd(struct LinkList *v)
+{
+    char *x = NULL;
+    if (v->last == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        struct Node *t = v->last;
+        if (v->first == v->last)
+            v->first = v->last = NULL;
+        else
+        {
+            v->last = t->prev;
+            t->prev->next = v->first;
+            v->first->prev = v->last;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+char *DeleteAtPos(struct LinkList *v, int pos)
+{
+    char *x = NULL;
+    int c = count(*v);
+    if (pos < 1 || pos > c)
+        printf("Invalid Position");
+    else if (pos == 1)
+        x = DeleteAtBeg(v);
+    else if (pos == c)
+        x = DeleteAtEnd(v);
+    else
+    {
+        int i;
+        struct Node *t, *pv, *p = v->first;
+        for (i = 1; i < pos; i++)
+            p = p->next;
+
+        t = p;
+        pv = t->prev;
+        pv->next = p->next;
+        p->next->prev = pv;
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+int IsEmpty(struct LinkList v)
+{
+    return v.first == NULL ? 1 : 0;
+}
+
+int IsFull(struct LinkList v)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL)
+        return 1;
+    free(t);
+    return 0;
+}
+
+int Search(struct LinkList v, char *key)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        do
+        {
+            if (p->data[0] == key[0])
+            {
+                int i = 1;
+                while (p->data[i] == key[i] && key[i] != '\0')
+                    i++;
+                if (key[i] == '\0')
+                    return 1;
+            }
+            p = p->next;
+        } while (p != v.first);
+    }
+    return 0;
+}
+
+void Display(struct LinkList v)
+{
+    struct Node *p = v.first;
+    if (p == NULL)
+        printf("Linked List is Empty\n");
+    else
+    {
+        printf("Linked List : ");
+        do
+        {
+            printf("%s ", p->data);
+            p = p->next;
+        } while (p != v.first);
+        printf("\nReverse Linked List : ");
+        p = v.last;
+        do
+        {
+            printf("%s ", p->data);
+            p = p->prev;
+
+        } while (p != v.last);
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct LinkList l;
+    l.first = l.last = NULL;
+    InsertAtBeg(&l, "Cc");
+    InsertAtBeg(&l, "Bb");
+    InsertAtBeg(&l, "Aa");
+    InsertAtEnd(&l, "Ee");
+    InsertAtEnd(&l, "Ff");
+    InsertAtEnd(&l, "Hh");
+    InsertAtPos(&l, "Gg", 6);
+    InsertAtPos(&l, "Dd", 4);
+    InsertAtPos(&l, "Zz", 10);
+
+    Display(l);
+    printf("Is Linked List Empty : %d\n", IsEmpty(l));
+    printf("Is Linked List Full: %d\n", IsFull(l));
+
+    printf("Deleted value at Beginning : %s\n", DeleteAtBeg(&l));
+    printf("Deleted value at End : %s\n", DeleteAtEnd(&l));
+    printf("Deleted value at %d position : %s\n", 6,
+     DeleteAtPos(&l, 6));
+
+    Display(l);
+    printf("First Element : %s\n", l.last->next->data);
+    printf("Last Element : %s\n", l.first->prev->data);
+    printf("Is %s present in Linked List ? %s", "Ee",
+     Search(l, "Ee") ? "Yes" : "No");
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Invalid Position
+Linked List : Aa Bb Cc Dd Ee Ff Gg Hh 
+Reverse Linked List : Hh Gg Ff Ee Dd Cc Bb Aa
+Is Linked List Empty : 0
+Is Linked List Full: 0
+Deleted value at Beginning : Aa
+Deleted value at End : Hh
+Deleted value at 6 position : Gg
+Linked List : Bb Cc Dd Ee Ff
+Reverse Linked List : Ff Ee Dd Cc Bb
+First Element : Bb
+Last Element : Ff
+Is Ee present in Linked List ? Yes                       
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="links9" class="Content-box">
+          <h3>
+            9. Enter the 2 polynomial equations dynamically, add them and
+            display the answer.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int coeff;
+    int exp;
+    struct Node *next;
+};
+
+void Display(struct Node *p);
+
+void Insert(struct Node **root, int coef, int ex)
+{
+    struct Node *p, *pv = NULL, *t = (struct Node *)
+    malloc(sizeof(struct Node));
+    if (t != NULL)
+    {
+        t->exp = ex;
+        t->coeff = coef;
+        t->next = NULL;
+        p = *root;
+        if (p == NULL)
+            *root = t;
+        else
+        {
+            while (p != NULL)
+            {
+                if (p->exp > ex)
+                {
+                    pv = p;
+                    p = p->next;
+                }
+                else if (p->exp == ex)
+                {
+                    p->coeff += coef;
+                    free(t);
+                    break;
+                }
+                else
+                {
+                    t->next = p;
+                    if (pv == NULL)
+                        *root = t;
+                    else
+                        pv->next = t;
+                    break;
+                }
+            }
+            if (p == NULL)
+                pv->next = t;
+        }
+    }
+}
+
+struct Node *Add(struct Node *r1, struct Node *r2)
+{
+    struct Node *t, *sum = (struct Node *)malloc
+    (sizeof(struct Node));
+    t = sum;
+    while (r1 && r2)
+    {
+        if (r1->exp > r2->exp)
+        {
+            t->next = r1;
+            r1 = r1->next;
+            t = t->next;
+        }
+        else if (r1->exp < r2->exp)
+        {
+            t->next = r2;
+            r2 = r2->next;
+            t = t->next;
+        }
+        else
+        {
+            t->next = r1;
+            t = t->next;
+            t->coeff = t->coeff + r2->coeff;
+            r1 = r1->next;
+            r2 = r2->next;
+        }
+    }
+    if (r1 != NULL)
+        t->next = r1;
+
+    if (r2 != NULL)
+        t->next = r2;
+
+    t = sum->next;
+    free(sum);
+    return t;
+}
+
+void Display(struct Node *p)
+{
+    if (p == NULL)
+        printf("Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            printf("%dx^%d", p->coeff, p->exp);
+            if (p->next != NULL)
+                printf(" + ");
+            p = p->next;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int n = 4, coeff = 0, exp = 0;
+    struct Node *Poly1 = NULL, *Poly2 = NULL, *Res = NULL;
+
+    printf("Enter the number of terms of 1st Polynomial : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements of 1st Polynomial 
+    (Coefficient and Exponent)\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter %d term : ", i + 1);
+        scanf("%d %d", &coeff, &exp);
+        if (exp < 0)
+        {
+            printf("Exponent can't be negative.
+            (Try again!)\n");
+            i--;
+        }
+        else
+            Insert(&Poly1, coeff, exp);
+    }
+
+    n = 4;
+    coeff = exp = 0;
+    printf("Enter the number of terms of 
+    2nd Polynomial : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements of 2nd Polynomial 
+    (Coefficient and Exponent)\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter %d term : ", i + 1);
+        scanf(" %d %d", &coeff, &exp);
+        if (exp < 0)
+        {
+            printf("Exponent can't be negative.(Try again!)\n");
+            i--;
+        }
+        else
+            Insert(&Poly2, coeff, exp);
+    }
+
+    printf("Polynomial 1 : ");
+    Display(Poly1);
+
+    printf("Polynomial 2 : ");
+    Display(Poly2);
+
+    printf("Resulting Polynomial : ");
+    Res = Add(Poly1, Poly2);
+    Display(Res);
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms of 1st Polynomial
+ : 3 
+Enter All Elements of 1st Polynomial 
+(Coefficient and Exponent)
+Enter 1 term : 2 5
+Enter 2 term : 2 2
+Enter 3 term : 2 0
+Enter the number of terms of 2nd Polynomial
+ : 3
+Enter All Elements of 2nd Polynomial 
+(Coefficient and Exponent)
+Enter 1 term : 1 4
+Enter 2 term : 3 2
+Enter 3 term : 10 0
+Polynomial 1 : 2x^5 + 2x^2 + 2x^0
+Polynomial 2 : 1x^4 + 3x^2 + 10x^0
+Resulting Polynomial : 2x^5 + 1x^4 +
+ 5x^2 + 12x^0
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div id="links10" class="Content-box">
+          <h3>
+            10. Enter the 2 polynomial equations dynamically, subtract them and
+            display the answer.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int coeff;
+    int exp;
+    struct Node *next;
+};
+
+void Display(struct Node *p);
+
+void Insert(struct Node **root, int coef, int ex)
+{
+    struct Node *p, *pv = NULL, *t = (struct Node *)
+    malloc(sizeof(struct Node));
+    if (t != NULL)
+    {
+        t->exp = ex;
+        t->coeff = coef;
+        t->next = NULL;
+        p = *root;
+        if (p == NULL)
+            *root = t;
+        else
+        {
+            while (p != NULL)
+            {
+                if (p->exp > ex)
+                {
+                    pv = p;
+                    p = p->next;
+                }
+                else if (p->exp == ex)
+                {
+                    p->coeff += coef;
+                    free(t);
+                    break;
+                }
+                else
+                {
+                    t->next = p;
+                    if (pv == NULL)
+                        *root = t;
+                    else
+                        pv->next = t;
+                    break;
+                }
+            }
+            if (p == NULL)
+                pv->next = t;
+        }
+    }
+}
+
+struct Node *Sub(struct Node *r1, struct Node *r2)
+{
+    struct Node *t, *res = (struct Node *)malloc(sizeof(struct Node));
+    t = res;
+    while (r1 && r2)
+    {
+        if (r1->exp > r2->exp)
+        {
+            t->next = r1;
+            r1 = r1->next;
+            t = t->next;
+        }
+        else if (r1->exp < r2->exp)
+        {
+            t->next = r2;
+            r2->coeff = -r2->coeff;
+            r2 = r2->next;
+            t = t->next;
+        }
+        else
+        {
+            t->next = r1;
+            t = t->next;
+            t->coeff = t->coeff - r2->coeff;
+            r1 = r1->next;
+            r2 = r2->next;
+        }
+    }
+    if (r1 != NULL)
+        t->next = r1;
+
+    if (r2 != NULL)
+        t->next = r2;
+
+    t = res->next;
+    free(res);
+    return t;
+}
+
+void Display(struct Node *p)
+{
+    if (p == NULL)
+        printf("Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            printf("%dx^%d", p->coeff, p->exp);
+            if (p->next != NULL)
+                printf(" + ");
+            p = p->next;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int n = 4, coeff = 0, exp = 0;
+    struct Node *Poly1 = NULL, *Poly2 = NULL, *Res = NULL;
+
+    printf("Enter the number of terms of 1st Polynomial : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements of 1st Polynomial (Coefficient and
+     Exponent)\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter %d term : ", i + 1);
+        scanf("%d %d", &coeff, &exp);
+        if (exp < 0)
+        {
+            printf("Exponent can't be negative.(Try again!)\n");
+            i--;
+        }
+        else
+            Insert(&Poly1, coeff, exp);
+    }
+
+    n = 4;
+    coeff = exp = 0;
+    printf("Enter the number of terms of 2nd Polynomial : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements of 2nd Polynomial (Coefficient and
+     Exponent)\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter %d term : ", i + 1);
+        scanf(" %d %d", &coeff, &exp);
+        if (exp < 0)
+        {
+            printf("Exponent can't be negative.(Try again!)\n");
+            i--;
+        }
+        else
+            Insert(&Poly2, coeff, exp);
+    }
+
+    printf("Polynomial 1 : ");
+    Display(Poly1);
+
+    printf("Polynomial 2 : ");
+    Display(Poly2);
+
+    printf("Resulting Polynomial : ");
+    Res = Sub(Poly1, Poly2);
+    Display(Res);
+
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms of 1st Polynomial
+ : 3  
+Enter All Elements of 1st Polynomial 
+(Coefficient and Exponent)
+Enter 1 term : 2 5
+Enter 2 term : 2 2
+Enter 3 term : 2 0
+Enter the number of terms of 2nd Polynomial
+ : 3
+Enter All Elements of 2nd Polynomial 
+(Coefficient and Exponent)
+Enter 1 term : -5 5
+Enter 2 term : 2 3
+Enter 3 term : 4 0
+Polynomial 1 : 2x^5 + 2x^2 + 2x^0
+Polynomial 2 : -5x^5 + 2x^3 + 4x^0
+Resulting Polynomial : 7x^5 + -2x^3 + 
+2x^2 + -2x^0
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="links11" class="Content-box">
+          <h3>
+            11. Enter the 2 polynomial equations dynamically, multiply them and
+            display the answer.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int coeff;
+    int exp;
+    struct Node *next;
+};
+
+void Display(struct Node *p);
+
+void Insert(struct Node **root, int coef, int ex)
+{
+    struct Node *p, *pv = NULL, *t = (struct Node *)
+    malloc(sizeof(struct Node));
+    if (t != NULL)
+    {
+        t->exp = ex;
+        t->coeff = coef;
+        t->next = NULL;
+        p = *root;
+        if (p == NULL)
+            *root = t;
+        else
+        {
+            while (p != NULL)
+            {
+                if (p->exp > ex)
+                {
+                    pv = p;
+                    p = p->next;
+                }
+                else if (p->exp == ex)
+                {
+                    p->coeff += coef;
+                    free(t);
+                    break;
+                }
+                else
+                {
+                    t->next = p;
+                    if (pv == NULL)
+                        *root = t;
+                    else
+                        pv->next = t;
+                    break;
+                }
+            }
+            if (p == NULL)
+                pv->next = t;
+        }
+    }
+}
+
+struct Node *Multiply(struct Node *r1, struct Node *r2)
+{
+    struct Node *t, *p, *pv, *tr2 = r2, *mul = NULL;
+
+    while (r1)
+    {
+        while (r2)
+        {
+            t = (struct Node *)malloc(sizeof(struct Node));
+            t->exp = r1->exp + r2->exp;
+            t->coeff = r1->coeff * r2->coeff;
+            t->next = NULL;
+            p = mul;
+            if (p == NULL)
+                mul = t;
+            while (p)
+            {
+                if (p->exp > t->exp)
+                {
+                    pv = p;
+                    p = p->next;
+                }
+                else if (p->exp == t->exp)
+                {
+                    p->coeff += t->coeff;
+                    free(t);
+                    break;
+                }
+                else
+                {
+                    t->next = p;
+                    if (pv == NULL)
+                        mul = t;
+                    else
+                        pv->next = t;
+                    break;
+                }
+            }
+            if (p == NULL)
+                pv->next = t;
+            // printf("\n--%dx^%d--\n", t->coeff, t->exp);
+            r2 = r2->next;
+        }
+        r2 = tr2;
+        r1 = r1->next;
+    }
+    return mul;
+}
+
+void Display(struct Node *p)
+{
+    if (p == NULL)
+        printf("Empty\n");
+    else
+    {
+        while (p != NULL)
+        {
+            printf("%dx^%d", p->coeff, p->exp);
+            if (p->next != NULL)
+                printf(" + ");
+            p = p->next;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int n = 4, coeff = 0, exp = 0;
+    struct Node *Poly1 = NULL, *Poly2 = NULL, *Res = NULL;
+
+    printf("Enter the number of terms of 1st Polynomial : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements of 1st Polynomial 
+    (Coefficient and Exponent)\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter %d term : ", i + 1);
+        scanf("%d %d", &coeff, &exp);
+        if (exp < 0)
+        {
+            printf("Exponent can't be negative.
+            (Try again!)\n");
+            i--;
+        }
+        else
+            Insert(&Poly1, coeff, exp);
+    }
+
+    n = 4;
+    coeff = exp = 0;
+    printf("Enter the number of terms of 2nd 
+    Polynomial : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements of 2nd Polynomial 
+    (Coefficient and Exponent)\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter %d term : ", i + 1);
+        scanf(" %d %d", &coeff, &exp);
+        if (exp < 0)
+        {
+            printf("Exponent can't be negative.
+            (Try again!)\n");
+            i--;
+        }
+        else
+            Insert(&Poly2, coeff, exp);
+    }
+
+    printf("Polynomial 1 : ");
+    Display(Poly1);
+
+    printf("Polynomial 2 : ");
+    Display(Poly2);
+
+    printf("Resulting Polynomial : ");
+    Res = Multiply(Poly1, Poly2);
+    Display(Res);
+
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms of 1st Polynomial
+ : 3
+Enter All Elements of 1st Polynomial 
+(Coefficient and Exponent)
+Enter 1 term : 2 5
+Enter 2 term : 2 2
+Enter 3 term : 3 0
+Enter the number of terms of 2nd Polynomial
+ : 3
+Enter All Elements of 2nd Polynomial (
+  Coefficient and Exponent)
+Enter 1 term : 5 3 
+Enter 2 term : 3 1
+Enter 3 term : 1 0
+Polynomial 1 : 2x^5 + 2x^2 + 3x^0
+Polynomial 2 : 5x^3 + 3x^1 + 1x^0
+Resulting Polynomial : 10x^8 + 6x^6 + 12x^5
+ + 21x^3 + 2x^2 + 9x^1 + 3x^0
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <footer id="Contact">
+          <img src="../Images/profile.jpg" />
+          <p>Learn Code</p>
+          <span>Copywrite &copy; 2024 LearnCode.com </span>
+
+          <a
+            href="https://www.facebook.com/"
+            aria-label="facebook"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.twitter.com/"
+            aria-label="twitter"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            aria-label="instagram"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.github.com/"
+            aria-label="github"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              class="text-xl"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+              ></path>
+            </svg>
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

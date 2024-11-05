@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../CSS/ALL.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav" id="nav">
+        <img src="../Images/1000031782-removebg-preview.png" />
+        <a href="../index.html">Home</a>
+        <a href="DS.html">Practise</a>
+        <a href="../index.html#About">About</a>
+        <a href="#Contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="Sidebar">
+        <span>2D Array</span>
+
+        <div>
+          <p>1.</p>
+          <a href="2DArray.html#2darr1"
+            >Enter a matrix of 4 rows and 2 columns from the user display it in
+            matrix format?</a
+          >
+        </div>
+        <div>
+          <p>2.</p>
+          <a href="2DArray.html#2darr2"
+            >Enter two Matrices from user, add the matrices and display the
+            answer?</a
+          >
+        </div>
+        <div>
+          <p>3.</p>
+          <a href="2DArray.html#2darr3"
+            >Enter two Matrices from user, subtract the matrices and display the
+            answer?</a
+          >
+        </div>
+        <div>
+          <p>4.</p>
+          <a href="2DArray.html#2darr4"
+            >Enter two Matrices from user, multiply the matrices and display the
+            answer?</a
+          >
+        </div>
+        <div>
+          <p>5.</p>
+          <a href="2DArray.html#2darr5"
+            >Enter a Matrix from user, copy it in another matrix of same
+            size?</a
+          >
+        </div>
+        <div>
+          <p>6.</p>
+          <a href="2DArray.html#2darr6"
+            >Enter the Matrix from user, multiply it with a scalar value and
+            display the answer?</a
+          >
+        </div>
+        <div>
+          <p>7.</p>
+          <a href="2DArray.html#2darr7"
+            >Create a tic tac toe game using 2D Arrays.</a
+          >
+        </div>
+      </section>
+
+      <section class="Content">
+        <h2>2D Array</h2>
+        <div id="2darr1" class="Content-box">
+          <h3>
+            1. Enter a matrix of 4 rows and 2 columns from the user display it
+            in matrix format?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int m[4][2];
+    printf("Enter All Element of 4 2 Matrix : ");
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 2; j++)
+            scanf("%d", &m[i][j]);
+
+    printf("Your 4 2 Matrix : \n");
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 2; j++)
+            printf("%d ", m[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter All Element of 4 2 Matrix : 1 2 3 4 5 6 7 8
+Your 4 2 Matrix : 
+1 2
+3 4
+5 6
+7 8
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="2darr2" class="Content-box">
+          <h3>
+            2. Enter two Matrices from user, add the matrices and display the
+            answer?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int r = 3, c = 3;
+    printf("Enter the no. of Rows and Columns : ");
+    scanf("%d %d", &r, &c);
+
+    int m1[r][c], m2[r][c], sum[r][c];
+    printf("Enter All %d Element of 1st Matrix : ", r * c);
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            scanf("%d", &m1[i][j]);
+
+    printf("Enter All %d Element of 2nd Matrix : ", r * c);
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+        {
+            scanf("%d", &m2[i][j]);
+            sum[i][j] = m1[i][j] + m2[i][j];
+        }
+
+    printf("\nYour 1st Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", m1[i][j]);
+        printf("\n");
+    }
+
+    printf("\nYour 2nd Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", m2[i][j]);
+        printf("\n");
+    }
+
+    printf("\nSum Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", sum[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the no. of Rows and Columns : 3 3
+Enter All 9 Element of 1st Matrix : 1 2 3 4 5 6 7 8 9
+Enter All 9 Element of 2nd Matrix : 9 8 7 6 5 4 3 2 1
+
+Your 1st Matrix :
+1 2 3
+4 5 6
+7 8 9
+
+Your 2nd Matrix :
+9 8 7
+6 5 4
+3 2 1
+
+Sum Matrix :
+10 10 10
+10 10 10
+10 10 10
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="2darr3" class="Content-box">
+          <h3>
+            3. Enter two Matrices from user, subtract the matrices and display
+            the answer?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int r = 3, c = 3;
+    printf("Enter the no. of Rows and Columns : ");
+    scanf("%d %d", &r, &c);
+
+    int m1[r][c], m2[r][c], sub[r][c];
+    printf("Enter All %d Element of 1st Matrix : ", r * c);
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            scanf("%d", &m1[i][j]);
+
+    printf("Enter All %d Element of 2nd Matrix : ", r * c);
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+        {
+            scanf("%d", &m2[i][j]);
+            sub[i][j] = m1[i][j] - m2[i][j];
+        }
+
+    printf("\nYour 1st Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", m1[i][j]);
+        printf("\n");
+    }
+
+    printf("\nYour 2nd Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", m2[i][j]);
+        printf("\n");
+    }
+
+    printf("\nResulting Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", sub[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter All 9 Element of 1st Matrix : 1 2 1 2 3 2 3 4 3
+Enter All 9 Element of 2nd Matrix : 1 1 1 2 2 2 3 3 3
+
+Your 1st Matrix :
+1 2 1
+2 3 2
+3 4 3
+
+Your 2nd Matrix :
+1 1 1
+2 2 2
+3 3 3
+
+Resulting Matrix :
+0 1 0
+0 1 0
+0 1 0
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="2darr4" class="Content-box">
+          <h3>
+            4. Enter two Matrices from user, multiply the matrices and display
+            the answer?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+    printf("Enter the no. of Rows and Columns 1st Matrix: ");
+    scanf("%d %d", &r1, &c1);
+
+    int m1[r1][c1];
+    printf("Enter All %d Element of 1st Matrix : ", r1 * c1);
+    for (int i = 0; i < r1; i++)
+        for (int j = 0; j < c1; j++)
+            scanf("%d", &m1[i][j]);
+
+    printf("Enter the no. of Rows and Columns 2nd Matrix: ");
+    scanf("%d %d", &r2, &c2);
+
+    if (c1 == r2)
+    {
+        int m2[r2][c2], mul[r1][c2];
+        printf("Enter All %d Element of 2nd Matrix : ", r2 * c2);
+        for (int i = 0; i < r2; i++)
+            for (int j = 0; j < c2; j++)
+                scanf("%d", &m2[i][j]);
+
+        printf("\nYour 1st Matrix : \n");
+        for (int i = 0; i < r1; i++)
+        {
+            for (int j = 0; j < c1; j++)
+                printf("%d ", m1[i][j]);
+            printf("\n");
+        }
+
+        printf("\nYour 2nd Matrix : \n");
+        for (int i = 0; i < r2; i++)
+        {
+            for (int j = 0; j < c2; j++)
+                printf("%d ", m2[i][j]);
+            printf("\n");
+        }
+
+        for (int i = 0; i < r1; i++)
+            for (int j = 0; j < c2; j++)
+            {
+                mul[i][j] = 0;
+                for (int k = 0; k < c1; k++)
+                    mul[i][j] += m1[i][k] * m2[k][j];
+            }
+
+        printf("\nResulting Matrix : \n");
+        for (int i = 0; i < r1; i++)
+        {
+            for (int j = 0; j < c2; j++)
+                printf("%d ", mul[i][j]);
+            printf("\n");
+        }
+    }
+    else
+        printf("Multiplication not Possible!\n");
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter All 4 Element of 1st Matrix : 1 2 3 4
+Enter the no. of Rows and Columns 2nd Matrix: 2 2
+Enter All 4 Element of 2nd Matrix : 2 1 2 1
+
+Your 1st Matrix :
+1 2
+3 4
+
+Your 2nd Matrix :
+2 1
+2 1
+
+Resulting Matrix :
+6 3
+14 7
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="2darr5" class="Content-box">
+          <h3>
+            5. Enter a Matrix from user, copy it in another matrix of same size?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int r = 3, c = 3;
+    printf("Enter the no. of Rows and Columns : ");
+    scanf("%d %d", &r, &c);
+
+    int m[r][c], copy[r][c];
+    printf("Enter All %d Element of Matrix : ", r * c);
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+        {
+            scanf("%d", &m[i][j]);
+            copy[i][j] = m[i][j];
+        }
+
+    printf("\nYour Copied Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", copy[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the no. of Rows and Columns : 3 3
+Enter All 9 Element of Matrix : 1 2 3 4 5 6 7 8 9
+
+Your Copied Matrix :
+1 2 3
+4 5 6
+7 8 9
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="2darr6" class="Content-box">
+          <h3>
+            6. Enter the Matrix from user, multiply it with a scalar value and
+            display the answer?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int x = 10, r = 3, c = 3;
+    printf("Enter the Scalar Quantity : ");
+    scanf("%d", &x);
+    printf("Enter the no. of Rows and Columns : ");
+    scanf("%d %d", &r, &c);
+
+    int m[r][c];
+    printf("Enter All %d Element of Matrix : ", r * c);
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+        {
+            scanf("%d", &m[i][j]);
+            m[i][j] *= x;
+        }
+
+    printf("\nResulting Matrix : \n");
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+            printf("%d ", m[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the Scalar Quantity : 5
+Enter the no. of Rows and Columns : 3 3
+Enter All 9 Element of Matrix : 1 2 3 4 5 6 7 8 9
+
+Resulting Matrix :
+5 10 15
+20 25 30
+35 40 45
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="2darr7" class="Content-box">
+          <h3>7. Create a tic tac toe game using 2D Arrays.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int fw = 0, xi, xj, oi, oj, k = 1;
+    char game[3][3] = {0};
+    while (!fw && k * 2 < 9)
+    {
+        printf("\nEnter the First Turn Cordinates (O) : ");
+        scanf("%d %d", &oi, &oj);
+
+        while (oi < 1 || oi > 3 || oj < 1 || oj > 3)
+        {
+            printf("Wrong Coordinates of (O)! Try Again\n");
+            printf("Enter the First Turn Cordinates (O) : ");
+            scanf("%d %d", &oi, &oj);
+        }
+        while (game[oi - 1][oj - 1] != '\0')
+        {
+            printf("Already Occupied Coordinate! Try Again\n");
+            printf("Enter the First Turn Cordinates (O) : ");
+            scanf("%d %d", &oi, &oj);
+        }
+        game[oi - 1][oj - 1] = 'O';
+
+        printf("Enter the Second Turn Cordinates (X) : ");
+        scanf("%d %d", &xi, &xj);
+
+        while (xi < 1 || xi > 3 || xj < 1 || xj > 3)
+        {
+            printf("Wrong Coordinates of (X)! Try Again\n");
+            printf("Enter the First Turn Cordinates (X) : ");
+            scanf("%d %d", &xi, &xj);
+        }
+
+        while (game[xi - 1][xj - 1] != '\0' || game[xi - 1][xj - 1]
+         == 'O')
+        {
+            printf("Already Occupied Coordinates! Try Again\n");
+            printf("Enter the First Turn Cordinates (X) : ");
+            scanf("%d %d", &xi, &xj);
+        }
+        game[xi - 1][xj - 1] = 'X';
+
+        printf("\n%d Times\n", k++);
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (game[i][j] == '\0')
+                    printf("  ");
+                else
+                    printf("%c ", game[i][j]);
+                (j != 2) ? printf("| ") : printf(" ");
+            }
+            printf("\n");
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (game[i][0] == game[i][1] && game[i][1] == 
+            game[i][2] && game[i][0] != '\0')
+            {
+                if (game[i][0] == 'X')
+                    printf("\nX wins");
+                else if (game[i][0] == 'O')
+                    printf("\nO wins");
+                fw = 1;
+                break;
+            }
+            else if (game[0][i] == game[1][i] && game[1][i] 
+            == game[2][i] && game[0][i] != '\0')
+            {
+                if (game[0][i] == 'X')
+                    printf("\nX wins");
+                else if (game[0][i] == 'O')
+                    printf("\nO wins");
+                fw = 1;
+                break;
+            }
+        }
+        if (game[0][0] == game[1][1] && game[1][1] 
+        == game[2][2] && game[0][0] != '\0')
+        {
+            if (game[0][0] == 'X')
+                printf("\nX wins");
+            else if (game[0][0] == 'O')
+                printf("\nO wins");
+            fw = 1;
+        }
+        else if (game[0][2] == game[1][1] && game[1][1] 
+        == game[2][0] && game[0][2] != '\0')
+        {
+            if (game[0][2] == 'X')
+                printf("\nX wins");
+            else if (game[0][2] == 'O')
+                printf("\nO wins");
+            fw = 1;
+        }
+    }
+    return 0;
+}</pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the First Turn Cordinates (O) : 1 1
+Enter the Second Turn Cordinates (X) : 2 2
+
+1 Times
+O |   |
+  | X |
+  |   |
+
+Enter the First Turn Cordinates (O) : 2 3
+Enter the Second Turn Cordinates (X) : 2 1
+
+2 Times
+O |   |
+X | X | O
+  |   |
+
+Enter the First Turn Cordinates (O) : 1 3
+Enter the Second Turn Cordinates (X) : 3 1
+
+3 Times
+O |   | O
+X | X | O
+X |   |
+
+Enter the First Turn Cordinates (O) : 3 3
+Enter the Second Turn Cordinates (X) : 1 2
+
+4 Times
+O | X | O
+X | X | O
+X |   | O
+
+O wins</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <footer id="Contact">
+          <img src="../Images/profile.jpg" />
+          <p>Learn Code</p>
+          <span>Copywrite &copy; 2024 LearnCode.com </span>
+
+          <a
+            href="https://www.facebook.com/"
+            aria-label="facebook"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.twitter.com/"
+            aria-label="twitter"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            aria-label="instagram"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.github.com/"
+            aria-label="github"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              class="text-xl"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+              ></path>
+            </svg>
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

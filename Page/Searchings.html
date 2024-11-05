@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../CSS/ALL.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav" id="nav">
+        <img src="../Images/1000031782-removebg-preview.png" />
+        <a href="../index.html">Home</a>
+        <a href="DS.html">Practise</a>
+        <a href="../index.html#About">About</a>
+        <a href="#Contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="Sidebar">
+        <span>Searchings Algorithms</span>
+
+        <div>
+          <p>1.</p>
+          <a href="Searchings.html#search1"
+            >Enter an integer array from the user, enter an integer value, and
+            perform linear search algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>2.</p>
+          <a href="Searchings.html#search2"
+            >Enter a string from the user, enter a character, and perform linear
+            search algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>3.</p>
+          <a href="Searchings.html#search3"
+            >Enter an integer array from the user, enter an integer value, and
+            perform linear search algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>4.</p>
+          <a href="Searchings.html#search4"
+            >Enter a string from the user, enter a character, and perform linear
+            search algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>5.</p>
+          <a href="Searchings.html#search5"
+            >Enter an integer array from the user, enter an integer value, and
+            perform binary search algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>6.</p>
+          <a href="Searchings.html#search6"
+            >Enter a string from the user, enter a character, and perform binary
+            search algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>7.</p>
+          <a href="Searchings.html#search7"
+            >Enter an integer array from the user, enter an integer value, and
+            perform binary search algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>8.</p>
+          <a href="Searchings.html#search8"
+            >Enter a string from the user, enter a character, and perform binary
+            search algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>9.</p>
+          <a href="Searchings.html#search9"
+            >Calculate the best and worst complexity of the linear searching
+            algorithm with exact time taken by the algorithm on an integer
+            array.</a
+          >
+        </div>
+        <div>
+          <p>10.</p>
+          <a href="Searchings.html#search10"
+            >Calculate the best and worst complexity of the binary searching
+            algorithm with exact time taken by the algorithm on an integer
+            array.</a
+          >
+        </div>
+      </section>
+
+      <section class="Content">
+        <h2>Searchings Algorithms</h2>
+        <div id="search1" class="Content-box">
+          <h3>
+            1. Enter an integer array from the user, enter an integer value, and
+            perform linear search algorithm through iteration.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int LinearSearch(int a[], int n, int x)
+{
+    int i = 0;
+    while (i < n && a[i] != x)
+        i++;
+    return i == n ? -1 : i;
+}
+
+int main()
+{
+    int n, i, x, SR;
+    printf("Enter the size of array : ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter the Elements : ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter the Element you want to Search : ");
+    scanf("%d", &x);
+
+    SR = LinearSearch(arr, n, x);
+    if (SR == -1)
+        printf("Searched Element Not found\n");
+    else
+        printf("Searched Element found at %d index\n", SR);
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of array : 6
+Enter the Elements : 1 20 0 -9 11 7
+Enter the Element you want to Search : 0
+Searched Element found at 2 index
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="search2" class="Content-box">
+          <h3>
+            2. Enter a string from the user, enter a character, and perform
+            linear search algorithm through recursion.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int LinearSearch(char a[], char x, int i)
+{
+    static int l = -1;
+    if (a[i] == '\0')
+        return l;
+    else
+    {
+        if (a[i] == x)
+            l = i;
+        return l == -1 ? LinearSearch(a, x, i + 1) : l;
+    }
+}
+
+int main()
+{
+    char str[20], x;
+    printf("Enter the String : ");
+    gets(str);
+
+    printf("Enter the Character you want to Search : ");
+    scanf("%c", &x);
+
+    int SR = LinearSearch(str, x, 0);
+    if (SR == -1)
+        printf("Searched Character Not found\n");
+    else
+        printf("Searched Character found at %d index\n", SR);
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the String : hello
+Enter the Character you want to Search : l
+Searched Character found at 2 index
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="search3" class="Content-box">
+          <h3>
+            3. Enter an integer array from the user, enter an integer value, and
+            perform linear search algorithm through recursion.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int LinearSearch(int a[], int x, int i)
+{
+    static int l = -1;
+    if (i < 0)
+        return l;
+    else
+    {
+        if (a[i] == x)
+            l = i;
+        return l == -1 ? LinearSearch(a, x, i - 1) : l;
+    }
+}
+
+int main()
+{
+    int n, i, x, SR;
+    printf("Enter the size of array : ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter the Elements : ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter the Element you want to Search : ");
+    scanf("%d", &x);
+
+    SR = LinearSearch(arr, x, n - 1);
+    if (SR == -1)
+        printf("Searched Element Not found\n");
+    else
+        printf("Searched Element found at %d index\n", SR);
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of array : 6
+Enter the Elements : 1 2 3 4 5 6
+Enter the Element you want to Search : 3
+Searched Element found at 2 index
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="search4" class="Content-box">
+          <h3>
+            4. Enter a string from the user, enter a character, and perform
+            linear search algorithm through iteration.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int LinearSearch(char a[], char x)
+{
+    int i = 0;
+    while (a[i] != '\0' && a[i] != x)
+        i++;
+    return a[i] == '\0' ? -1 : i;
+}
+
+int main()
+{
+    char str[20], x;
+    printf("Enter the String : ");
+    gets(str);
+
+    printf("Enter the Character you want to Search : ");
+    scanf("%c", &x);
+
+    int SR = LinearSearch(str, x);
+    if (SR == -1)
+        printf("Searched Character Not found\n");
+    else
+        printf("Searched Character found at %d index\n", SR);
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the String : hello man
+Enter the Character you want to Search : m
+Searched Character found at 6 index
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="search5" class="Content-box">
+          <h3>
+            5. Enter an integer array from the user, enter an integer value, and
+            perform binary search algorithm through iteration.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int BinarySearch(int a[], int n, int x)
+{
+    int i = 0, l = 0, h = n - 1, m;
+    while (l <= h)
+    {
+        m = (l + h) / 2;
+        if (a[m] == x)
+            return m;
+        else if (a[m] < x)
+            l = m + 1;
+        else
+            h = m - 1;
+    }
+    return -1;
+}
+
+int main()
+{
+    int n, i, x, SR;
+    printf("Enter the size of array : ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter the Elements(in Sorted Order) : ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter the Element you want to Search : ");
+    scanf("%d", &x);
+
+    SR = BinarySearch(arr, n, x);
+    if (SR == -1)
+        printf("Searched Element Not found\n");
+    else
+        printf("Searched Element found at %d index\n", SR);
+
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of array : 6
+Enter the Elements(in Sorted Order) : 1 2 3 4 5 6
+Enter the Element you want to Search : 3
+Searched Element found at 2 index
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="search6" class="Content-box">
+          <h3>
+            6. Enter a string from the user, enter a character, and perform
+            binary search algorithm through recursion.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int BinarySearch(char a[], char x, int l, int h)
+{
+    int m = (l + h) / 2;
+    if (l <= h)
+    {
+        if (a[m] == x)
+            return m;
+        else if (a[m] < x)
+            return BinarySearch(a, x, m + 1, h);
+        else if (a[m] > x)
+            return BinarySearch(a, x, l, m - 1);
+    }
+    else
+        return -1;
+}
+
+int main()
+{
+    char str[20], x;
+    printf("Enter the String(in Sorted Order) : ");
+    gets(str);
+
+    printf("Enter the Character you want to Search : ");
+    scanf("%c", &x);
+
+    int SR, h = 0;
+    while (str[h] != '\0')
+        h++;
+    SR = BinarySearch(str, x, 0, h - 1);
+    if (SR == -1)
+        printf("Searched Element Not found\n");
+    else
+        printf("Searched Element found at %d index\n", SR);
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the String(in Sorted Order) : abcdefg
+Enter the Character you want to Search : c
+Searched Element found at 2 index
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="search7" class="Content-box">
+          <h3>
+            7. Enter an integer array from the user, enter an integer value, and
+            perform binary search algorithm through recursion.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int BinarySearch(int a[], int x, int l, int h)
+{
+    int m = (l + h) / 2;
+    if (l <= h)
+    {
+        if (a[m] == x)
+            return m;
+        else if (a[m] < x)
+            return BinarySearch(a, x, m + 1, h);
+        else if (a[m] > x)
+            return BinarySearch(a, x, l, m - 1);
+    }
+    else
+        return -1;
+}
+
+int main()
+{
+    int n, i, x, SR;
+    printf("Enter the size of array : ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter the Elements(in Sorted Order) : ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter the Element you want to Search : ");
+    scanf("%d", &x);
+
+    SR = BinarySearch(arr, x, 0, n - 1);
+    if (SR == -1)
+        printf("Searched Element Not found\n");
+    else
+        printf("Searched Element found at %d index\n", SR);
+
+    return 0;
+}</pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of array : 6
+Enter the Elements(in Sorted Order) : 1 10 20 30 35 
+50
+Enter the Element you want to Search : 1
+Searched Element found at 0 index</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="search8" class="Content-box">
+          <h3>
+            8. Enter a string from the user, enter a character, and perform
+            binary search algorithm through iteration.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int BinarySearch(char a[], int x)
+{
+    int i = 0, l = 0, h = 0, m;
+    while (a[h] != '\0')
+        h++;
+    h--;
+    while (l <= h)
+    {
+        m = (l + h) / 2;
+        if (a[m] == x)
+            return m;
+        else if (a[m] < x)
+            l = m + 1;
+        else
+            h = m - 1;
+    }
+    return -1;
+}
+
+int main()
+{
+    char str[20], x;
+    printf("Enter the String(in Sorted Order) : ");
+    gets(str);
+
+    printf("Enter the Character you want to Search : ");
+    scanf("%c", &x);
+
+    int SR = BinarySearch(str, x);
+    if (SR == -1)
+        printf("Searched Element Not found\n");
+    else
+        printf("Searched Element found at %d index\n", SR);
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the String(in Sorted Order) : ginrst
+Enter the Character you want to Search : s
+Searched Element found at 4 index                        
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div id="search9" class="Content-box">
+          <h3>
+            9. Calculate the best and worst complexity of the linear searching
+            algorithm with exact time taken by the algorithm on an integer
+            array.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre></pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre></pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="search10" class="Content-box">
+          <h3>
+            10. Calculate the best and worst complexity of the binary searching
+            algorithm with exact time taken by the algorithm on an integer
+            array.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre></pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre></pre>
+            </div>
+          </div>
+        </div>
+
+        <footer id="Contact">
+          <img src="../Images/profile.jpg" />
+          <p>Learn Code</p>
+          <span>Copywrite &copy; 2024 LearnCode.com </span>
+
+          <a
+            href="https://www.facebook.com/"
+            aria-label="facebook"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.twitter.com/"
+            aria-label="twitter"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            aria-label="instagram"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.github.com/"
+            aria-label="github"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              class="text-xl"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+              ></path>
+            </svg>
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

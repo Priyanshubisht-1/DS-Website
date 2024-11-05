@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../CSS/ALL.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav" id="nav">
+        <img src="../Images/1000031782-removebg-preview.png" />
+        <a href="../index.html">Home</a>
+        <a href="DS.html">Practise</a>
+        <a href="../index.html#About">About</a>
+        <a href="#Contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="Sidebar">
+        <span>Sorting Algorithms</span>
+
+        <div>
+          <p>1.</p>
+          <a href="Sortings.html#Sort1"
+            >Enter an integer array from the user and perform selection sort
+            algorithm through iteration.
+          </a>
+        </div>
+        <div>
+          <p>2.</p>
+          <a href="Sortings.html#Sort2"
+            >Enter an integer array from the user and perform selection sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>3.</p>
+          <a href="Sortings.html#Sort3"
+            >Enter an integer array from the user and perform bubble sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>4.</p>
+          <a href="Sortings.html#Sort4"
+            >Enter an integer array from the user and perform bubble sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>5.</p>
+          <a href="Sortings.html#Sort5"
+            >Enter an integer array from the user and perform insertion sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>6.</p>
+          <a href="Sortings.html#Sort6"
+            >Enter an integer array from the user and perform insertion sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>7.</p>
+          <a href="Sortings.html#Sort7"
+            >Enter an integer array from the user and perform merge sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>8.</p>
+          <a href="Sortings.html#Sort8"
+            >Enter an integer array from the user and perform merge sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>9.</p>
+          <a href="Sortings.html#Sort9"
+            >Enter an integer array from the user and perform quick sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>10.</p>
+          <a href="Sortings.html#Sort10"
+            >Enter an integer array from the user and perform quick sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>11.</p>
+          <a href="Sortings.html#Sort11"
+            >Enter a string array from the user and perform selection sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>12.</p>
+          <a href="Sortings.html#Sort12"
+            >Enter a string array from the user and perform selection sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>13.</p>
+          <a href="Sortings.html#Sort13"
+            >Enter a string array from the user and perform bubble sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>14.</p>
+          <a href="Sortings.html#Sort14"
+            >Enter a string array from the user and perform bubble sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>15.</p>
+          <a href="Sortings.html#Sort15"
+            >Enter a string array from the user and perform insertion sort
+            algorithm through iteration.</a
+          >
+        </div>
+        <div>
+          <p>16.</p>
+          <a href="Sortings.html#Sort16"
+            >Enter a string array from the user and perform insertion sort
+            algorithm through recursion.</a
+          >
+        </div>
+        <div>
+          <p>17.</p>
+          <a href="Sortings.html#Sort17"
+            >Enter a string array from the user and perform merge sort algorithm
+            through iteration.
+          </a>
+        </div>
+        <div>
+          <p>18.</p>
+          <a href="Sortings.html#Sort18"
+            >Enter a string array from the user and perform merge sort algorithm
+            through recursion.</a
+          >
+        </div>
+        <div>
+          <p>19.</p>
+          <a href="Sortings.html#Sort19"
+            >Enter a string array from the user and perform quick sort algorithm
+            through iteration.</a
+          >
+        </div>
+        <div>
+          <p>20.</p>
+          <a href="Sortings.html#Sort20"
+            >Enter a string array from the user and perform quick sort algorithm
+            through recursion.</a
+          >
+        </div>
+      </section>
+
+      <section class="Content">
+        <h2>Sorting Algorithms</h2>
+        <div id="Sort1" class="Content-box">
+          <h3>
+            1. Enter an integer array from the user and perform selection sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        int si = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[si] > arr[j])
+                si = j;
+        }
+        int temp = arr[i];
+        arr[i] = arr[si];
+        arr[si] = temp;
+    }
+
+    printf("Sorted Array(Selection Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 6
+Enter the Elements : 10 0 -9 100 99 7
+Sorted Array(Selection Sort) : -9 0 7 10 99 100 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort2" class="Content-box">
+          <h3>
+            2. Enter an integer array from the user and perform selection sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int minIndex(int a[], int i, int j)
+{
+    if (i == j)
+        return i;
+
+    int k = minIndex(a, i + 1, j);
+    return (a[i] < a[k]) ? i : k;
+}
+
+void recurSelectionSort(int a[], int n, int index)
+{
+    if (index == n)
+        return;
+
+    int k = minIndex(a, index, n - 1);
+
+    if (k != index)
+    {
+        int temp = a[k];
+        a[k] = a[index];
+        a[index] = temp;
+    }
+    recurSelectionSort(a, n, index + 1);
+}
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    recurSelectionSort(arr, n, 0);
+
+    printf("Sorted Array(Selection Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+
+    return 0;
+}
+
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 5
+Enter the Elements : 10 6 -9 100 5
+Sorted Array(Selection Sort) : -9 5 6 10 100 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort3" class="Content-box">
+          <h3>
+            3. Enter an integer array from the user and perform bubble sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Sorted Array(Bubble Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 6
+Enter the Elements : 10 0 -9 100 99 7
+Sorted Array(Bubble Sort) : -9 0 7 10 99 100 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort4" class="Content-box">
+          <h3>
+            4. Enter an integer array from the user and perform bubble sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+void Bubblesort(int *a, int n, int i)
+{
+    if (i == n)
+    {
+        if (n == 0)
+            return;
+        else
+            Bubblesort(a, n - 1, 0);
+    }
+    else
+    {
+        if (a[i] > a[i + 1])
+        {
+            int temp = a[i];
+            a[i] = a[i + 1];
+            a[i + 1] = temp;
+        }
+        Bubblesort(a, n, i + 1);
+    }
+}
+
+int main()
+{
+    int n = 5, arr[10];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    Bubblesort(arr, n - 1, 0);
+
+    printf("Array : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 6
+Enter the Elements : 10 0 -9 100 99 7
+Array : -9 0 7 10 99 100 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort5" class="Content-box">
+          <h3>
+            5. Enter an integer array from the user and perform insertion sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    for (int i = 1; i < n; i++)
+    {
+        int j, key = arr[i];
+        for (j = i - 1; j >= 0; j--)
+        {
+            if (arr[j] > key)
+                arr[j + 1] = arr[j];
+            else
+                break;
+        }
+        arr[j + 1] = key;
+    }
+
+    printf("Sorted Array(Insertion Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 6
+Enter the Elements : 10 0 -9 100 99 7
+Sorted Array(Insertion Sort) : -9 0 7 10 99 100
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort6" class="Content-box">
+          <h3>
+            6. Enter an integer array from the user and perform insertion sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+
+void InsertionSort(int *a, int n, int i)
+{
+    static int key, ki = 1;
+    if (ki == n)
+        return;
+    else
+    {
+        if (i + 1 == ki)
+            key = a[ki];
+        if (i >= 0 && (a[i] > key))
+        {
+            a[i + 1] = a[i];
+            InsertionSort(a, n, i - 1);
+        }
+        else
+        {
+            a[i + 1] = key;
+            InsertionSort(a, n, ki++);
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of Elements : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int arr[n];
+        printf("Enter the Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &arr[i]);
+
+        clock_t start = clock();
+        InsertionSort(arr, n, 0);
+        clock_t end = clock();
+        double time = (double)(end - start);
+        printf("TIme taken for Sorting : %lf", time);
+
+        printf("Sorted Elements : ");
+        for (int i = 0; i < n; i++)
+            printf("%d ", arr[i]);
+    }
+    else
+        printf("Invalid size!");
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of Elements : 5
+Enter the Elements : 10 6 -9 100 5
+TIme taken for Sorting : 0.000000
+Sorted Elements : -9 5 6 10 100 
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort7" class="Content-box">
+          <h3>
+            7. Enter an integer array from the user and perform merge sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+void merge(int A[], int mid, int low, int high)
+{
+    int i, j, k, B[100];
+    i = low;
+    j = mid + 1;
+    k = low;
+
+    while (i <= mid && j <= high)
+    {
+        if (A[i] < A[j])
+        {
+            B[k] = A[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            B[k] = A[j];
+            j++;
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        B[k] = A[i];
+        k++;
+        i++;
+    }
+    while (j <= high)
+    {
+        B[k] = A[j];
+        k++;
+        j++;
+    }
+    for (int i = low; i <= high; i++)
+    {
+        A[i] = B[i];
+    }
+}
+
+void mergeSort(int A[], int low, int high)
+{
+    int mid;
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+        mergeSort(A, low, mid);
+        mergeSort(A, mid + 1, high);
+        merge(A, mid, low, high);
+    }
+}
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    mergeSort(arr, 0, n - 1);
+    printf("Sorted Array(Merge Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}
+
+</pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 5
+Enter the Elements : 100 -9 0 22 5
+Sorted Array(Merge Sort) : -9 0 5 22 
+100
+</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort8" class="Content-box">
+          <h3>
+            8. Enter an integer array from the user and perform merge sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+void merge(int A[], int mid, int low, int high)
+{
+    int i, j, k, B[100];
+    i = low;
+    j = mid + 1;
+    k = low;
+
+    while (i <= mid && j <= high)
+    {
+        if (A[i] < A[j])
+        {
+            B[k] = A[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            B[k] = A[j];
+            j++;
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        B[k] = A[i];
+        k++;
+        i++;
+    }
+    while (j <= high)
+    {
+        B[k] = A[j];
+        k++;
+        j++;
+    }
+    for (int i = low; i <= high; i++)
+    {
+        A[i] = B[i];
+    }
+}
+
+void mergeSort(int A[], int low, int high)
+{
+    int mid;
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+        mergeSort(A, low, mid);
+        mergeSort(A, mid + 1, high);
+        merge(A, mid, low, high);
+    }
+}
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    mergeSort(arr, 0, n - 1);
+    printf("Sorted Array(Merge Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 5
+Enter the Elements : 100 -9 0 22 5
+Sorted Array(Merge Sort) : -9 0 5 22 100                         
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort9" class="Content-box">
+          <h3>
+            9. Enter an integer array from the user and perform quick sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int partition(int A[], int low, int high)
+{
+    int pivot = A[low];
+    int i = low + 1;
+    int j = high;
+    int temp;
+
+    do
+    {
+        while (A[i] <= pivot)
+        {
+            i++;
+        }
+
+        while (A[j] > pivot)
+        {
+            j--;
+        }
+
+        if (i < j)
+        {
+            temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+        }
+    } while (i < j);
+
+    // Swap A[low] and A[j]
+    temp = A[low];
+    A[low] = A[j];
+    A[j] = temp;
+    return j;
+}
+
+void quickSort(int A[], int low, int high)
+{
+    int partitionIndex; // Index of pivot after partition
+
+    if (low < high)
+    {
+        partitionIndex = partition(A, low, high);
+        quickSort(A, low, partitionIndex - 1);  // sort left subarray
+        quickSort(A, partitionIndex + 1, high); // sort right subarray
+    }
+}
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    quickSort(arr, 0, n - 1);
+
+    printf("Sorted Array(Quick Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 5
+Enter the Elements : 100 -9 0 22 5
+Sorted Array(Quick Sort) : -9 0 5 22 100
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div id="Sort10" class="Content-box">
+          <h3>
+            10. Enter an integer array from the user and perform quick sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int partition(int A[], int low, int high)
+{
+    int pivot = A[low];
+    int i = low + 1;
+    int j = high;
+    int temp;
+
+    do
+    {
+        while (A[i] <= pivot)
+        {
+            i++;
+        }
+
+        while (A[j] > pivot)
+        {
+            j--;
+        }
+
+        if (i < j)
+        {
+            temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+        }
+    } while (i < j);
+
+    // Swap A[low] and A[j]
+    temp = A[low];
+    A[low] = A[j];
+    A[j] = temp;
+    return j;
+}
+
+void quickSort(int A[], int low, int high)
+{
+    int partitionIndex; // Index of pivot after partition
+
+    if (low < high)
+    {
+        partitionIndex = partition(A, low, high);
+        quickSort(A, low, partitionIndex - 1);  // sort left subarray
+        quickSort(A, partitionIndex + 1, high); // sort right subarray
+    }
+}
+
+int main()
+{
+    int n = 5, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+    printf("Enter the Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    quickSort(arr, 0, n - 1);
+
+    printf("Sorted Array(Quick Sort) : ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}
+
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 5
+Enter the Elements : 100 -9 0 22 5
+Sorted Array(Quick Sort) : -9 0 5 22 100 
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort11" class="Content-box">
+          <h3>
+            11. Enter a string array from the user and perform selection sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+// selection sorts looks for smallest element in the sorted array
+void selectionSort(char arr[], int size)
+{
+    char temp, min;
+    for (int i = 0; i < size; i++)
+    {
+        min = i;
+        for (int j = i + 1; j < size; j++)
+        {
+            if (arr[j] < arr[min])
+            {
+                min = j;
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    start = clock();
+    selectionSort(arr, size);
+    end = clock();
+    printf("\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\nExecuted in %fs\n", (double)(end - start) / CLOCKS_PER_SEC);
+
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENT : z
+ENTER ARRAY ELEMENT : b
+ENTER ARRAY ELEMENT : a
+ENTER ARRAY ELEMENT : k
+ENTER ARRAY ELEMENT : m
+z b a k m 
+a b k m z 
+Executed in 0.000001s
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort12" class="Content-box">
+          <h3>
+            12. Enter a string array from the user and perform selection sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+// selection sorts looks for smallest element in the sorted array
+void selectionSort(char arr[], int size, int i, int j, int min)
+{
+    if (i < (size - 1))
+    {
+        if (j == size)
+        {
+            char temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+            i++;
+            min = i;
+            j = min + 1;
+        }
+        if (arr[j] < arr[min])
+        {
+            selectionSort(arr, size, i, j + 1, j);
+        }
+        else
+        {
+            selectionSort(arr, size, i, j + 1, min);
+        }
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    start = clock();
+    selectionSort(arr, size, 0, 1, 0);
+    end = clock();
+    printf("\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\nExecuted in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENTS : 
+z
+b
+a
+k
+m
+Original array: z b a k m 
+Sorted array: a b k m z 
+Executed in 0.000001s
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort13" class="Content-box">
+          <h3>
+            13. Enter a string array from the user and perform bubble sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+// swaps the adjacent elements
+void bubbleSort(char arr[], int size)
+{
+    char temp;
+    for (int j = 0; j < size; j++)
+    {
+        for (int i = 0; i < (size - j - 1); i++)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    start = clock();
+    bubbleSort(arr, size);
+    end = clock();
+    printf("\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\nExecuted in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY: 5
+ENTER ARRAY ELEMENTS: 
+ENTER ARRAY ELEMENT: z
+ENTER ARRAY ELEMENT: b
+ENTER ARRAY ELEMENT: a
+ENTER ARRAY ELEMENT: k
+ENTER ARRAY ELEMENT: m
+Original array: z b a k m 
+Sorted array: a b k m z 
+Executed in 0.000001s
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort14" class="Content-box">
+          <h3>
+            14. Enter a string array from the user and perform bubble sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+// swaps the adjacent elements
+void bubbleSort(char arr[], int size, int i, int j)
+{
+    if (i < size)
+    {
+        if (j < (size - i - 1))
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                char temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+            bubbleSort(arr, size, i, j + 1);
+        }
+        bubbleSort(arr, size, i + 1, 0);
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    start = clock();
+    bubbleSort(arr, size, 0, 0);
+    end = clock();
+    printf("\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\nExecuted in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY: 5
+ENTER ARRAY ELEMENTS: 
+ENTER ARRAY ELEMENT: z
+ENTER ARRAY ELEMENT: b
+ENTER ARRAY ELEMENT: a
+ENTER ARRAY ELEMENT: k
+ENTER ARRAY ELEMENT: m
+Original array: z b a k m 
+Sorted array: a b k m z 
+Executed in 0.000001s
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort15" class="Content-box">
+          <h3>
+            15. Enter a string array from the user and perform insertion sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+// inserts element from unsorted array to sorted array at its correct place
+void insertionSort(char arr[], int size)
+{
+    char temp;
+    int i = 0;
+    for (int j = i + 1; j < size; j++)
+    {
+        temp = arr[j];
+        int k = i;
+        while ((arr[k] > temp) && (k >= 0))
+        {
+            arr[k + 1] = arr[k];
+            k--;
+        }
+        arr[k + 1] = temp;
+        i++;
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    start = clock();
+    insertionSort(arr, size);
+    end = clock();
+    printf("\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\nExecuted in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY: 5
+ENTER ARRAY ELEMENTS: 
+ENTER ARRAY ELEMENT: z
+ENTER ARRAY ELEMENT: b
+ENTER ARRAY ELEMENT: a
+ENTER ARRAY ELEMENT: k
+ENTER ARRAY ELEMENT: m
+Original array: z b a k m 
+Sorted array: a b k m z 
+Executed in 0.000003s
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort16" class="Content-box">
+          <h3>
+            16. Enter a string array from the user and perform insertion sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+// Recursive function to perform insertion sort
+void insertionSort(char arr[], int n)
+{
+    // Base case: If array has one element, return
+    if (n <= 1)
+        return;
+
+    // Sort the first n-1 elements
+    insertionSort(arr, n - 1);
+
+    // Insert the last element at its correct position
+    int last = arr[n - 1];
+    int j = n - 2;
+
+    // Shift elements of arr[0..n-2] that are greater than last
+    while (j >= 0 && arr[j] > last)
+    {
+        arr[j + 1] = arr[j];
+        j--;
+    }
+    arr[j + 1] = last;
+}
+
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    start = clock();
+    insertionSort(arr, size);
+    end = clock();
+    printf("\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\nExecuted in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENTS: 
+ENTER ARRAY ELEMENT: z
+ENTER ARRAY ELEMENT: b
+ENTER ARRAY ELEMENT: a
+ENTER ARRAY ELEMENT: k
+ENTER ARRAY ELEMENT: m
+Original array: z b a k m 
+Sorted array: a b k m z 
+Executed in 0.000003s
+
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort17" class="Content-box">
+          <h3>
+            17. Enter a string array from the user and perform merge sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;time.h>
+#define maxSize 100
+void display(char arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\n");
+}
+// Function to merge two subarrays
+void merge(char arr[], int left, int mid, int right)
+{
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    char L[n1], R[n2];
+
+    // Copy data to temp arrays L[] and R[]
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    // Merge the temp arrays back into arr[left..right]
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy remaining elements of L[], if any
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copy remaining elements of R[], if any
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+// Iterative merge sort function
+void mergeSort(char arr[], int n)
+{
+    int curr_size;  // For current size of subarrays to be merged
+    int left_start; // For picking starting index of left subarray
+
+    // Merge subarrays in bottom up manner
+    for (curr_size = 1; curr_size <= n - 1; curr_size = 2 * 
+    curr_size)
+    {
+        // Pick starting point of different subarrays of current 
+        size
+        for (left_start = 0; left_start < n - 1; left_start += 2 * 
+        curr_size)
+        {
+            int mid = left_start + curr_size - 1;
+            int right_end = (left_start + 2 * curr_size - 1 < n - 
+            1) ? (left_start + 2 * curr_size - 1) : (n - 1);
+
+            // Merge subarrays arr[left_start...mid] & arr[mid+1...
+            right_end]
+            merge(arr, left_start, mid, right_end);
+        }
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    display(arr, size);
+    start = clock();
+    mergeSort(arr, size);
+    end = clock();
+    display(arr, size);
+    printf("Executed in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENT : e
+ENTER ARRAY ELEMENT : a
+ENTER ARRAY ELEMENT : c
+ENTER ARRAY ELEMENT : b
+ENTER ARRAY ELEMENT : d
+Before Sorting: e a c b d
+After Sorting: a b c d e
+Executed in 0.000123s
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort18" class="Content-box">
+          <h3>
+            18. Enter a string array from the user and perform merge sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;time.h>
+#define maxSize 100
+void display(char arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\n");
+}
+
+void merge(char arr1[], int start, int mid, int end)
+{
+    int i = start;
+    int j = mid + 1;
+    int k;
+    char *temp = (char *)calloc(sizeof(char), end - start + 1);
+    for (k = 0; k <= (end - start); k++)
+    {
+        if ((i <= mid) && (j <= end))
+        {
+            if (arr1[i] <= arr1[j])
+            {
+                temp[k] = arr1[i++];
+            }
+            else
+            {
+                temp[k] = arr1[j++];
+            }
+        }
+        else
+        {
+            if (i <= mid)
+            {
+                temp[k] = arr1[i++];
+            }
+            else
+            {
+                temp[k] = arr1[j++];
+            }
+        }
+    }
+    for (i = start; i <= end; i++)
+    {
+        arr1[i] = temp[i - start];
+    }
+    free(temp);
+}
+void mergeSort(char arr[maxSize], int start, int end)
+{
+    if (start >= end)
+    {
+        return;
+    }
+    else
+    {
+        int mid = start + ((end - start) / 2);
+        mergeSort(arr, start, mid);
+        mergeSort(arr, mid + 1, end);
+        merge(arr, start, mid, end);
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    display(arr, size);
+    start = clock();
+    mergeSort(arr, 0, size - 1);
+    end = clock();
+    display(arr, size);
+    printf("Executed in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENT : e
+ENTER ARRAY ELEMENT : a
+ENTER ARRAY ELEMENT : c
+ENTER ARRAY ELEMENT : b
+ENTER ARRAY ELEMENT : d
+Before Sorting:
+e a c b d 
+
+After Sorting:
+a b c d e 
+
+Executed in 0.000123s
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort19" class="Content-box">
+          <h3>
+            19. Enter a string array from the user and perform quick sort
+            algorithm through iteration. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;time.h>
+#define maxSize 100
+
+void swap(char *a, char *b)
+{
+    char temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Partition function for quicksort
+int partition(char arr[], int low, int high)
+{
+    char pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++)
+    {
+        if (arr[j] < pivot)
+        {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+// Iterative QuickSort function
+void quickSort(char arr[], int n)
+{
+    char stack[n];
+    int top = -1;
+
+    // Initialize stack with initial values
+    stack[++top] = 0;
+    stack[++top] = n - 1;
+
+    while (top >= 0)
+    {
+        char high = stack[top--];
+        char low = stack[top--];
+
+        int pivot = partition(arr, low, high);
+
+
+        if (pivot - 1 > low)
+        {
+            stack[++top] = low;
+            stack[++top] = pivot - 1;
+        }
+
+
+        if (pivot + 1 < high)
+        {
+            stack[++top] = pivot + 1;
+            stack[++top] = high;
+        }
+    }
+}
+
+// Function to print an array
+void display(char arr[], int size)
+{
+    for (char i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\n");
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    display(arr, size);
+    start = clock();
+    quickSort(arr, size);
+    end = clock();
+    display(arr, size);
+    printf("Executed in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENT : e
+ENTER ARRAY ELEMENT : a
+ENTER ARRAY ELEMENT : c
+ENTER ARRAY ELEMENT : b
+ENTER ARRAY ELEMENT : d
+Before Sorting:
+e a c b d 
+
+After Sorting:
+a b c d e 
+
+Executed in 0.000123s
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="Sort20" class="Content-box">
+          <h3>
+            20. Enter a string array from the user and perform quick sort
+            algorithm through recursion. Also calculate the worst and best
+            complexity with exact time.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;time.h>
+#define maxSize 100
+
+void display(char arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c ", arr[i]);
+    }
+    printf("\n");
+}
+int partition(char arr[], int start, int end)
+{
+    char pivot = arr[start];
+    int ind = start, temp;
+    int i = start, j = end;
+    for (int i = start; i <= end; i++)
+    {
+        if (arr[i] < pivot)
+            ind++;
+    }
+    temp = arr[ind];
+    arr[ind] = arr[start];
+    arr[start] = temp;
+    while ((i < ind) && (j > ind))
+    {
+        if (arr[i] > pivot)
+        {
+            if (arr[j] < pivot)
+            {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            else
+                j--;
+        }
+        else
+            i++;
+    }
+    return ind;
+}
+
+void quickSort(char arr[maxSize], int start, int end)
+{
+    if (start >= end)
+    {
+        return;
+    }
+    else
+    {
+        int p = partition(arr, start, end);
+        quickSort(arr, start, p - 1);
+        quickSort(arr, p + 1, end);
+    }
+}
+int main()
+{
+    char arr[maxSize];
+    int size;
+    clock_t start, end;
+    printf("ENTER SIZE OF ARRAY : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("ENTER ARRAY ELEMENT : ");
+        fflush(stdin);
+        scanf("%c", &arr[i]);
+    }
+    display(arr, size);
+    start = clock();
+    quickSort(arr, 0, size - 1);
+    end = clock();
+    display(arr, size);
+    printf("Executed in %fs\n", (double)(end - start) / 
+    CLOCKS_PER_SEC);
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+ENTER SIZE OF ARRAY : 5
+ENTER ARRAY ELEMENT : c
+ENTER ARRAY ELEMENT : a
+ENTER ARRAY ELEMENT : e
+ENTER ARRAY ELEMENT : b
+ENTER ARRAY ELEMENT : d
+Unsorted array: c a e b d 
+Sorted array: a b c d e 
+Executed in 0.000015s
+
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <footer id="Contact">
+          <img src="../Images/profile.jpg" />
+          <p>Learn Code</p>
+          <span>Copywrite &copy; 2024 LearnCode.com </span>
+
+          <a
+            href="https://www.facebook.com/"
+            aria-label="facebook"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.twitter.com/"
+            aria-label="twitter"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            aria-label="instagram"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.github.com/"
+            aria-label="github"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              class="text-xl"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+              ></path>
+            </svg>
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

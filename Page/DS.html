@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../CSS/DS.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav" id="nav">
+        <img src="../Images/1000031782-removebg-preview.png" />
+        <a href="../index.html">Home</a>
+        <a href="DS.html">Practise</a>
+        <a href="../index.html#About">About</a>
+        <a href="#Contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <iframe src="Sidebar.html" class="Sidebar" name="ifram"> </iframe>
+      <section class="Content">
+        <h2>1D Array</h2>
+        <div id="1darr1" class="Content-box">
+          <h3>1. Enter an array from user and display all the value ?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        printf("Array : ");
+        for (int i = 0; i < n; i++)
+            printf("%d ", a[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 10 20 30 40 50
+Array : 10 20 30 40 50 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr2" class="Content-box">
+          <h3>
+            2. Enter an array from user and print the array in reverse order
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        printf("Reverse Array : ");
+        for (int i = n - 1; i >= 0; i--)
+            printf("%d ", a[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 1 2 3 4 5
+Reverse Array : 5 4 3 2 1 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr3" class="Content-box">
+          <h3>
+            3. Enter an array from user and copy the array into second array?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], copy[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &a[i]);
+            copy[i] = a[i];
+        }
+
+        printf("Copied Array : ");
+        for (int i = 0; i < n; i++)
+            printf("%d ", copy[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 1 2 3 4 5
+Copied Array : 1 2 3 4 5 
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr4" class="Content-box">
+          <h3>
+            4. Enter an array from user and copy it into another array in
+            reverse order?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], copy[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &a[i]);
+            copy[n - 1 - i] = a[i];
+        }
+
+        printf("Copied Array (Copy in Reverse): ");
+        for (int i = 0; i < n; i++)
+            printf("%d ", copy[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 1 2 3 4 5
+Copied Array (Copy in Reverse): 5 4 3 2 1
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr5" class="Content-box">
+          <h3>
+            5. Enter an array from user and print the number which is even ?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        printf("Even numbers in Array : ");
+        for (int i = 0; i < n; i++)
+            if (a[i] % 2 == 0)
+                printf("%d ", a[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5 
+Enter All Elements : 1 2 3 4 5
+Even numbers in Array : 2 4
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr6" class="Content-box">
+          <h3>
+            6. Enter an array from user and print the number which is positive ?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        printf("Positive numbers in Array : ");
+        for (int i = 0; i < n; i++)
+            if (a[i] > 0)
+                printf("%d ", a[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 6
+Enter All Elements : -1 2 3 -4 5 6
+Positive numbers in Array : 2 3 5 6
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr7" class="Content-box">
+          <h3>
+            7. Enter an array from user and square all the values of array ?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &a[i]);
+            a[i] *= a[i];
+        }
+
+        printf("Array (Squared Elements): ");
+        for (int i = 0; i < n; i++)
+            printf("%d ", a[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+</pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 1 2 3 4 5
+Array (Squared Elements): 1 4 9 16 25 
+</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr8" class="Content-box">
+          <h3>
+            8. Enter an array from user and find maximum and minimum value?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        int small, big;
+        small = big = a[0];
+        for (int i = 0; i < n; i++)
+        {
+            if (small > a[i])
+                small = a[i];
+            else if (big < a[i])
+                big = a[i];
+        }
+        printf("Maximum value : %d\n", big);
+        printf("Minimum value : %d\n", small);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 10 20 0 100 50
+Maximum value : 100
+Minimum value : 0                        
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr9" class="Content-box">
+          <h3>9. Enter an array from user and find the k-th smallest value?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int k = 1, n, arr[20];
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+
+    printf("Enter All Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Which Smallest term you want to find : ");
+    scanf("%d", &k);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    
+    if (k <= n)
+        printf("%d Smallest Element in Array : %d", k, arr[k - 1]);
+    else
+        printf("Invalid Input!(Array is only of size %d)\n", n);
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 5
+Enter All Elements : 100 -9 2 0 55
+Which Smallest term you want to find : 2
+2 Smallest Element in Array : 0
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div id="1darr10" class="Content-box">
+          <h3>10. Enter an array from user and add all values ?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], sum = 0;
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &a[i]);
+            sum += a[i];
+        }
+        printf("Sum of All Elements in Array : %d", sum);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 5
+Enter All Elements : 1 2 3 4 10
+Sum of All Elements in Array : 20
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr11" class="Content-box">
+          <h3>11. Enter an array from user and find the duplicate values?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], Dup[n], d = -1;
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        for (int i = 0; i < n; i++)
+        {
+            int c = 1;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (a[i] == a[j])
+                    c++;
+            }
+
+            if (c > 1)
+            {
+                int k;
+                for (k = 0; k <= d; k++)
+                {
+                    if (a[i] == Dup[k])
+                        break;
+                }
+                if (k == d + 1)
+                    Dup[++d] = a[i];
+            }
+        }
+
+        printf("Duplicate Values : ");
+        if (d != -1)
+            for (int i = 0; i <= d; i++)
+                printf("%d ", Dup[i]);
+        else
+            printf("none");
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 6
+Enter All Elements : 1 2 3 4 2 5
+Duplicate Values : 2 
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr12" class="Content-box">
+          <h3>
+            12. Enter an array from user and remove the duplicate values and
+            fill with zero?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n];
+        printf("Enter All Elements (Except 0): ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        for (int i = 0; i < n; i++)
+        {
+            int c = 1;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (a[i] == a[j])
+                {
+                    c++;
+                    a[j] = 0;
+                }
+            }
+            if (c > 1)
+                a[i] = 0;
+        }
+
+        printf("Resulting Array : ");
+        for (int i = 0; i < n; i++)
+            printf("%d ", a[i]);
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 6  
+Enter All Elements (Except 0): 1 2 3 2 5 3
+Resulting Array : 1 0 0 0 5 0
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr13" class="Content-box">
+          <h3>13. Enter an array from user and count the duplicate values?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], Dup[n], count[n], d = -1;
+        printf("Enter All Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        for (int i = 0; i < n; i++)
+        {
+            int c = 1;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (a[i] == a[j])
+                    c++;
+            }
+
+            if (c > 1)
+            {
+                int k;
+                for (k = 0; k <= d; k++)
+                {
+                    if (a[i] == Dup[k])
+                        break;
+                }
+                if (k == d + 1)
+                {
+                    Dup[++d] = a[i];
+                    count[d] = c;
+                }
+            }
+        }
+
+        printf("Duplicate Values with count : ");
+        if (d != -1)
+            for (int i = 0; i <= d; i++)
+                printf("\n%d -> %d", Dup[i], count[i]);
+        else
+            printf("none");
+    }
+    else
+        printf("Invalid Size\n");
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 6
+Enter All Elements : 1 2 3 2 2 3
+Duplicate Values with count : 
+2 -> 3
+3 -> 2
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr14" class="Content-box">
+          <h3>
+            14. Enter an array from user and print all possible combinations of
+            the elements?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+void Comb(int Arr[], int Used[], int res[], int l, int k)
+{
+    int i = 0;
+    if (k == l)
+    {
+        for (int i = 0; i < l; i++)
+            printf("%d ", res[i]);
+        printf("\n");
+        return;
+    }
+    else
+    {
+        while (i < l)
+        {
+            if (Used[i] == 0)
+            {
+                res[k] = Arr[i];
+                Used[i] = 1;
+                Comb(Arr, Used, res, l, k + 1);
+                Used[i] = 0;
+            }
+            i++;
+        }
+    }
+}
+
+int main()
+{
+    int n = 3;
+    printf("Enter the number of terms : ");
+    scanf("%d", &n);
+
+    int arr[n], used[n], res[n];
+    printf("Enter All the Elements : ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+        used[i] = 0;
+    }
+
+    printf("All Possible Combinations\n");
+    Comb(arr, used, res, n, 0);
+
+    return 0;
+}
+ 
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of terms : 3
+Enter All the Elements : 1 2 3
+All Possible Combinations
+1 2 3
+1 3 2
+2 1 3
+2 3 1
+3 1 2
+3 2 1
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr15" class="Content-box">
+          <h3>
+            15. Enter an array from user and print all the palindrome numbers?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], pal[n], p = 0;
+        printf("Enter All the Elements : ");
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &a[i]);
+            int t = a[i], rev = 0;
+            while (t != 0)
+            {
+                rev = (rev * 10) + t % 10;
+                t = t / 10;
+            }
+            if (rev == a[i])
+                pal[p++] = a[i];
+        }
+
+        if (p != 0)
+        {
+            printf("Palindrome number in Array : ");
+            for (int i = 0; i < p; i++)
+                printf("%d ", pal[i]);
+        }
+        else
+            printf("Palindrome number in Array : none\n");
+    }
+    else
+        printf("Invalid Size!\n");
+    return 0;
+}
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of array : 5
+Enter All the Elements : 12 121 1 57 1234
+Palindrome number in Array : 121 1 
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr16" class="Content-box">
+          <h3>
+            16. Enter two arrays from the user and check they are same or not?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of both array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], b[n], p = 1;
+        printf("Enter All Elements of 1st Array: ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        printf("Enter All Elements of 2nd Array: ");
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &b[i]);
+            if (a[i] != b[i])
+                p = 0;
+        }
+        if (p == 1)
+            printf("Both Arrays are Same\n");
+        else
+            printf("Both Array are Different\n");
+    }
+    else
+        printf("Invalid Size!\n");
+
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of both array : 5   
+Enter All Elements of 1st Array: 1 2 3 4 5
+Enter All Elements of 2nd Array: 1 2 3 4 6
+Both Array are Different
+</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr17" class="Content-box">
+          <h3>
+            17. Merge the two sorted arrays into one array but in sorted order?
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n1, n2;
+    printf("Enter the size of 1st and 2nd Array : ");
+    scanf("%d%d", &n1, &n2);
+    if (n1 > 0 && n2 > 0)
+    {
+        int a[n1], b[n2];
+        printf("Enter 1st Array 's Elements (in Sorted Order): ");
+        for (int i = 0; i < n1; i++)
+        {
+            scanf("%d", &a[i]);
+            if (i != 0 && a[i - 1] > a[i])
+            {
+                printf("Try again!(with sorted order)");
+                return 0;
+            }
+        }
+        printf("\nEnter 2nd Array 's Elements (in Sorted Order): ");
+        for (int i = 0; i < n2; i++)
+        {
+            scanf("%d", &b[i]);
+            if (i != 0 && b[i - 1] > b[i])
+            {
+                printf("Try again!(with sorted order)");
+                return 0;
+            }
+        }
+
+        int Merge[n1 + n2], i = 0, j = 0, k = 0;
+        while (i < n1 && j < n2)
+        {
+            if (a[i] < b[j])
+                Merge[k++] = a[i++];
+            else if (a[i] > b[j])
+                Merge[k++] = b[j++];
+            else
+            {
+
+                Merge[k++] = a[i];
+                i++, j++;
+            }
+        }
+        while (i < n1)
+            Merge[k++] = a[i++];
+        while (j < n2)
+            Merge[k++] = b[j++];
+
+        printf("Merged Array : ");
+        for (int i = 0; i < k; i++)
+            printf("%d ", Merge[i]);
+    }
+    else
+        printf("Invalid size!");
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of 1st and 2nd Array : 5 6
+Enter 1st Array 's Elements (in Sorted Order): 1 3 7 8 10
+
+Enter 2nd Array 's Elements (in Sorted Order): 2 4 6 9 11 12
+Merged Array : 1 2 3 4 6 7 8 9 10 11 12
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr18" class="Content-box">
+          <h3>18. Find the local minima in the array?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], lmin[n], k = 0;
+        printf("Enter the Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        for (int i = 1; i < n - 1; i++)
+        {
+            if (a[i - 1] > a[i] && a[i + 1] > a[i])
+                lmin[k++] = a[i];
+        }
+
+        printf("Local minima : ");
+        for (int i = 0; i < k; i++)
+            printf("%d ", lmin[i]);
+    }
+    else
+        printf("Input is Invalid!\n");
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 6
+Enter the Elements : 1 0 2 5 3 7
+Local minima : 0 3
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr19" class="Content-box">
+          <h3>19. Find the local maxima in the array?</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int n;
+    printf("Enter the size of Array : ");
+    scanf("%d", &n);
+    if (n > 0)
+    {
+        int a[n], lmin[n], k = 0;
+        printf("Enter the Elements : ");
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+
+        for (int i = 1; i < n - 1; i++)
+        {
+            if (a[i - 1] < a[i] && a[i + 1] < a[i])
+                lmin[k++] = a[i];
+        }
+
+        printf("Local maxima : ");
+        for (int i = 0; i < k; i++)
+            printf("%d ", lmin[i]);
+    }
+    else
+        printf("Input is Invalid!\n");
+    return 0;
+}
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the size of Array : 6
+Enter the Elements : 1 0 2 5 3 7
+Local maxima : 5 
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="1darr20" class="Content-box">
+          <h3>
+            20. Trapping Rain Water Problem: Given n non-negative integers
+            representing an elevation map where the width of each bar is 1,
+            compute how much water it can trap after raining.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre></pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre></pre>
+            </div>
+          </div>
+        </div>
+
+        <footer id="Contact">
+          <img src="../Images/profile.jpg" />
+          <p>Learn Code</p>
+          <span>Copywrite &copy; 2024 LearnCode.com </span>
+
+          <a
+            href="https://www.facebook.com/"
+            aria-label="facebook"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.twitter.com/"
+            aria-label="twitter"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            aria-label="instagram"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.github.com/"
+            aria-label="github"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              class="text-xl"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+              ></path>
+            </svg>
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,3645 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../CSS/ALL.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav" id="nav">
+        <img src="../Images/1000031782-removebg-preview.png" />
+        <a href="../index.html">Home</a>
+        <a href="DS.html">Practise</a>
+        <a href="../index.html#About">About</a>
+        <a href="#Contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="Sidebar">
+        <span>Trees</span>
+
+        <div>
+          <p>1.</p>
+          <a href="Trees.html#tree1"
+            >Construct binary tree from preorder and inorder traversal.</a
+          >
+        </div>
+        <div>
+          <p>2.</p>
+          <a href="Trees.html#tree2">Binary tree level order traversal.</a>
+        </div>
+        <div>
+          <p>3.</p>
+          <a href="Trees.html#tree3">Print left view of binary tree.</a>
+        </div>
+        <div>
+          <p>4.</p>
+          <a href="Trees.html#tree4">Display the right view of binary tree.</a>
+        </div>
+        <div>
+          <p>5.</p>
+          <a href="Trees.html#tree5"
+            >Construct binary tree from postorder and inorder traversal.</a
+          >
+        </div>
+        <div>
+          <p>6.</p>
+          <a href="Trees.html#tree6">Find the maximum depth of binary tree.</a>
+        </div>
+        <div>
+          <p>7.</p>
+          <a href="Trees.html#tree7"
+            >Create binary search tree using arrays (insert, delete, search,
+            preorder, inorder, postorder, minimum element).</a
+          >
+        </div>
+        <div>
+          <p>8.</p>
+          <a href="Trees.html#tree8"
+            >Create binary search tree dynamically (insert, delete, search,
+            preorder, inorder, postorder, minimum element).</a
+          >
+        </div>
+        <div>
+          <p>9.</p>
+          <a href="Trees.html#tree9"
+            >Find inorder predecessor and inorder successor of binary search
+            tree (dynamically represented).</a
+          >
+        </div>
+        <div>
+          <p>10.</p>
+          <a href="Trees.html#tree10"
+            >Check whether binary search tree contains dead end.</a
+          >
+        </div>
+        <div>
+          <p>11.</p>
+          <a href="Trees.html#tree11"
+            >Create binary tree to binary search tree through array.</a
+          >
+        </div>
+        <div>
+          <p>12.</p>
+          <a href="Trees.html#tree12"
+            >Find kth largest element in binary search tree through array.</a
+          >
+        </div>
+        <div>
+          <p>13.</p>
+          <a href="Trees.html#tree13"
+            >Find kth smallest element in a binary search tree through array.</a
+          >
+        </div>
+        <div>
+          <p>14.</p>
+          <a href="Trees.html#tree14"
+            >Print preorder traversal to postorder traversal of binary search
+            tree.</a
+          >
+        </div>
+        <div>
+          <p>15.</p>
+          <a href="Trees.html#tree15"
+            >Construct binary search tree from given preorder traversal through
+            arrays.</a
+          >
+        </div>
+        <div>
+          <p>16.</p>
+          <a href="Trees.html#tree16"
+            >Construct binary search tree from given postorder traversal through
+            arrays.</a
+          >
+        </div>
+        <div>
+          <p>17.</p>
+          <a href="Trees.html#tree17"
+            >Create strictly binary tree from the given input by the user
+            (dynamically).</a
+          >
+        </div>
+        <div>
+          <p>18.</p>
+          <a href="Trees.html#tree18"
+            >Create almost complete binary tree from the given input by the user
+            (dynamically).</a
+          >
+        </div>
+        <div>
+          <p>19.</p>
+          <a href="Trees.html#tree19"
+            >Create complete binary tree from the given input by the user
+            (dynamically).</a
+          >
+        </div>
+        <div>
+          <p>20.</p>
+          <a href="Trees.html#tree20"
+            >Count the number of nodes in binary search tree constructed
+            dynamically.</a
+          >
+        </div>
+      </section>
+
+      <section class="Content">
+        <h2>Trees</h2>
+        <div id="tree1" class="Content-box">
+          <h3>1. Construct binary tree from preorder and inorder traversal.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#define maxSize 100
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+int search(int arr[], int start, int end, int value)
+{
+    for (int i = start; i <= end; i++)
+    {
+        if (arr[i] == value)
+            return i;
+    }
+    return -1;
+}
+
+struct Node *buildTree(int inorder[], int preorder[], int inStart, 
+int inEnd, int *preIndex)
+{
+    if (inStart > inEnd)
+        return NULL;
+
+    int current = preorder[*preIndex];
+    (*preIndex)++;
+    struct Node *node = newNode(current);
+
+    if (inStart == inEnd)
+        return node;
+
+    int inIndex = search(inorder, inStart, inEnd, current);
+
+    node->left = buildTree(inorder, preorder, inStart, inIndex - 1, 
+    preIndex);
+    node->right = buildTree(inorder, preorder, inIndex + 1, inEnd, 
+    preIndex);
+
+    return node;
+}
+
+void printInorder(struct Node *node)
+{
+    if (node == NULL)
+        return;
+    printInorder(node->left);
+    printf("%d ", node->data);
+    printInorder(node->right);
+}
+
+int main()
+{
+    int inorder[maxSize];
+    int preorder[maxSize];
+    int size;
+    printf("Enter the number of nodes : ");
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("Enter inorder element : ");
+        scanf("%d", &inorder[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        printf("Enter preorder element : ");
+        scanf("%d", &preorder[i]);
+    }
+    int preIndex = 0;
+
+    struct Node *root = buildTree(inorder, preorder, 0, size - 1, &
+    preIndex);
+
+    printf("Inorder traversal of the constructed tree:\n");
+    printInorder(root);
+
+    return 0;
+}
+
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes : 5
+Enter inorder element : 4
+Enter inorder element : 2
+Enter inorder element : 5
+Enter inorder element : 1
+Enter inorder element : 3
+Enter preorder element : 1
+Enter preorder element : 2
+Enter preorder element : 4
+Enter preorder element : 5
+Enter preorder element : 3
+Inorder traversal of the constructed tree:
+4 2 5 1 3
+
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree2" class="Content-box">
+          <h3>2. Binary tree level order traversal.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+struct Node *insert(struct Node *root, int data)
+{
+    if (root == NULL)
+    {
+        return newNode(data);
+    }
+
+    if (data < root->data)
+    {
+        root->left = insert(root->left, data);
+    }
+    else
+    {
+        root->right = insert(root->right, data);
+    }
+
+    return root;
+}
+
+void levelOrderTraversal(struct Node *root)
+{
+    if (root == NULL)
+    {
+        printf("Tree is empty.\n");
+        return;
+    }
+
+    struct Node *queue[100];
+    int front = 0, rear = 0;
+
+    queue[rear++] = root;
+
+    while (front < rear)
+    {
+        struct Node *current = queue[front++];
+        printf("%d ", current->data);
+
+        if (current->left != NULL)
+        {
+            queue[rear++] = current->left;
+        }
+        if (current->right != NULL)
+        {
+            queue[rear++] = current->right;
+        }
+    }
+    printf("\n");
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert a node\n");
+        printf("2. Level Order Traversal\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            printf("Inserted %d into the binary tree.\n", value);
+            break;
+        case 2:
+            printf("Level Order Traversal:\n");
+            levelOrderTraversal(root);
+            break;
+        case 3:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert a node
+2. Level Order Traversal
+3. Exit
+Enter your choice: 1
+Enter value to insert: 10
+Inserted 10 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Level Order Traversal
+3. Exit
+Enter your choice: 1
+Enter value to insert: 5
+Inserted 5 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Level Order Traversal
+3. Exit
+Enter your choice: 1
+Enter value to insert: 15
+Inserted 15 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Level Order Traversal
+3. Exit
+Enter your choice: 2
+Level Order Traversal:
+10 5 15 
+
+Menu:
+1. Insert a node
+2. Level Order Traversal
+3. Exit
+Enter your choice: 3
+Exiting...
+
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree3" class="Content-box">
+          <h3>3. Print left view of binary tree.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+struct Node *insert(struct Node *root, int data)
+{
+    if (root == NULL)
+    {
+        return newNode(data);
+    }
+
+    if (data < root->data)
+    {
+        root->left = insert(root->left, data);
+    }
+    else
+    {
+        root->right = insert(root->right, data);
+    }
+
+    return root;
+}
+
+void leftViewUtil(struct Node *root, int level, int *maxLevel)
+{
+    if (root == NULL)
+        return;
+
+    if (*maxLevel < level)
+    {
+        printf("%d ", root->data);
+        *maxLevel = level;
+    }
+
+    leftViewUtil(root->left, level + 1, maxLevel);
+    leftViewUtil(root->right, level + 1, maxLevel);
+}
+
+void leftView(struct Node *root)
+{
+    int maxLevel = 0;
+    leftViewUtil(root, 1, &maxLevel);
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert a node\n");
+        printf("2. Print Left View of Binary Tree\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            printf("Inserted %d into the binary tree.\n", value);
+            break;
+        case 2:
+            printf("Left View of the Binary Tree:\n");
+            leftView(root);
+            printf("\n");
+            break;
+        case 3:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert a node
+2. Print Left View of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 10
+Inserted 10 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Print Left View of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 5
+Inserted 5 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Print Left View of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 15
+Inserted 15 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Print Left View of Binary Tree
+3. Exit
+Enter your choice: 2
+Left View of the Binary Tree:
+10 5 
+
+Menu:
+1. Insert a node
+2. Print Left View of Binary Tree
+3. Exit
+Enter your choice: 3
+Exiting...
+
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree4" class="Content-box">
+          <h3>4. Display the right view of binary tree.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+struct Node *insert(struct Node *root, int data)
+{
+    if (root == NULL)
+    {
+        return newNode(data);
+    }
+
+    if (data < root->data)
+    {
+        root->left = insert(root->left, data);
+    }
+    else
+    {
+        root->right = insert(root->right, data);
+    }
+
+    return root;
+}
+
+void rightViewUtil(struct Node *root, int level, int *maxLevel)
+{
+    if (root == NULL)
+        return;
+
+    if (*maxLevel < level)
+    {
+        printf("%d ", root->data);
+        *maxLevel = level;
+    }
+
+    rightViewUtil(root->right, level + 1, maxLevel);
+    rightViewUtil(root->left, level + 1, maxLevel);
+}
+
+void rightView(struct Node *root)
+{
+    int maxLevel = 0;
+    rightViewUtil(root, 1, &maxLevel);
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert a node\n");
+        printf("2. Print Right View of Binary Tree\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            printf("Inserted %d into the binary tree.\n", value);
+            break;
+        case 2:
+            printf("Right View of the Binary Tree:\n");
+            rightView(root);
+            printf("\n");
+            break;
+        case 3:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert a node
+2. Print Right View of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 10
+Inserted 10 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Print Right View of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 5
+Inserted 5 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Print Right View of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 15
+Inserted 15 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Print Right View of Binary Tree
+3. Exit
+Enter your choice: 2
+Right View of the Binary Tree:
+10 15 
+
+Menu:
+1. Insert a node
+2. Print Right View of Binary Tree
+3. Exit
+Enter your choice: 3
+Exiting...
+
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree5" class="Content-box">
+          <h3>
+            5. Construct binary tree from postorder and inorder traversal.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+int search(int *inorder, int start, int end, int value)
+{
+    for (int i = start; i <= end; i++)
+    {
+        if (inorder[i] == value)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+struct Node *buildTree(int *inorder, int *postorder, int 
+inorderStart, int inorderEnd, int *postIndex)
+{
+    if (inorderStart > inorderEnd)
+    {
+        return NULL;
+    }
+
+    int rootValue = postorder[*postIndex];
+    struct Node *root = newNode(rootValue);
+    (*postIndex)--;
+
+    if (inorderStart == inorderEnd)
+    {
+        return root;
+    }
+
+    int inorderIndex = search(inorder, inorderStart, inorderEnd, 
+    rootValue);
+
+    root->right = buildTree(inorder, postorder, inorderIndex + 1, 
+    inorderEnd, postIndex);
+    root->left = buildTree(inorder, postorder, inorderStart, 
+    inorderIndex - 1, postIndex);
+
+    return root;
+}
+
+void inorderTraversal(struct Node *root)
+{
+    if (root == NULL)
+        return;
+    inorderTraversal(root->left);
+    printf("%d ", root->data);
+    inorderTraversal(root->right);
+}
+
+int main()
+{
+    int n, *inorder, *postorder;
+
+    printf("Enter the number of nodes in the tree: ");
+    scanf("%d", &n);
+
+    inorder = (int *)malloc(n * sizeof(int));
+    postorder = (int *)malloc(n * sizeof(int));
+
+    printf("Enter the inorder traversal:\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &inorder[i]);
+    }
+
+    printf("Enter the postorder traversal:\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &postorder[i]);
+    }
+
+    int postIndex = n - 1;
+    struct Node *root = buildTree(inorder, postorder, 0, n - 1, &
+    postIndex);
+
+    printf("Inorder traversal of the constructed tree:\n");
+    inorderTraversal(root);
+    printf("\n");
+
+    free(inorder);
+    free(postorder);
+
+    return 0;
+}
+
+        </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes in the tree: 5
+Enter the inorder traversal:
+4 2 5 1 3
+Enter the postorder traversal:
+4 5 2 3 1
+Inorder traversal of the constructed tree:
+4 2 5 1 3 
+
+                                        </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree6" class="Content-box">
+          <h3>6. Find the maximum depth of binary tree.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+struct Node *insert(struct Node *root, int data)
+{
+    if (root == NULL)
+    {
+        return newNode(data);
+    }
+
+    if (data < root->data)
+    {
+        root->left = insert(root->left, data);
+    }
+    else
+    {
+        root->right = insert(root->right, data);
+    }
+
+    return root;
+}
+
+int maxDepth(struct Node *node)
+{
+    if (node == NULL)
+    {
+        return 0;
+    }
+
+    int leftDepth = maxDepth(node->left);
+    int rightDepth = maxDepth(node->right);
+
+    return (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert a node\n");
+        printf("2. Find Maximum Depth of Binary Tree\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            printf("Inserted %d into the binary tree.\n", value);
+            break;
+        case 2:
+            printf("Maximum Depth of the Binary Tree: %d\n", 
+            maxDepth(root));
+            break;
+        case 3:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert a node
+2. Find Maximum Depth of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 10
+Inserted 10 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Find Maximum Depth of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 5
+Inserted 5 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Find Maximum Depth of Binary Tree
+3. Exit
+Enter your choice: 1
+Enter value to insert: 15
+Inserted 15 into the binary tree.
+
+Menu:
+1. Insert a node
+2. Find Maximum Depth of Binary Tree
+3. Exit
+Enter your choice: 2
+Maximum Depth of the Binary Tree: 2
+
+Menu:
+1. Insert a node
+2. Find Maximum Depth of Binary Tree
+3. Exit
+Enter your choice: 3
+Exiting...
+
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="tree7" class="Content-box">
+          <h3>
+            7. Create binary search tree using arrays (insert, delete, search,
+            preorder, inorder, postorder, minimum element).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define MAX_SIZE 100
+
+struct BST
+{
+    int data[MAX_SIZE];
+    int size;
+};
+
+struct BST *createBST()
+{
+    struct BST *bst = (struct BST *)malloc(sizeof(struct BST));
+    bst->size = 0;
+    return bst;
+}
+
+int search(struct BST *bst, int value)
+{
+    for (int i = 0; i < bst->size; i++)
+    {
+        if (bst->data[i] == value)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void insert(struct BST *bst, int value)
+{
+    if (search(bst, value) != -1)
+    {
+        printf("Value %d already exists in the BST.\n", value);
+        return;
+    }
+
+    if (bst->size == MAX_SIZE)
+    {
+        printf("BST is full, cannot insert %d\n", value);
+        return;
+    }
+
+    bst->data[bst->size] = value;
+    bst->size++;
+
+    for (int i = bst->size - 1; i > 0; i--)
+    {
+        if (bst->data[i] < bst->data[(i - 1) / 2])
+        {
+            int temp = bst->data[i];
+            bst->data[i] = bst->data[(i - 1) / 2];
+            bst->data[(i - 1) / 2] = temp;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+
+int minimum(struct BST *bst)
+{
+    if (bst->size == 0)
+    {
+        printf("BST is empty.\n");
+        return -1;
+    }
+    int min = bst->data[0];
+    for (int i = 1; i < bst->size; i++)
+    {
+        if (bst->data[i] < min)
+        {
+            min = bst->data[i];
+        }
+    }
+    return min;
+}
+
+void inorder(struct BST *bst, int index)
+{
+    if (index >= bst->size)
+        return;
+    inorder(bst, 2 * index + 1);
+    printf("%d ", bst->data[index]);
+    inorder(bst, 2 * index + 2);
+}
+
+void preorder(struct BST *bst, int index)
+{
+    if (index >= bst->size)
+        return;
+    printf("%d ", bst->data[index]);
+    preorder(bst, 2 * index + 1);
+    preorder(bst, 2 * index + 2);
+}
+
+void postorder(struct BST *bst, int index)
+{
+    if (index >= bst->size)
+        return;
+    postorder(bst, 2 * index + 1);
+    postorder(bst, 2 * index + 2);
+    printf("%d ", bst->data[index]);
+}
+
+void delete(struct BST *bst, int value)
+{
+    int index = search(bst, value);
+    if (index == -1)
+    {
+        printf("Value %d not found in BST.\n", value);
+        return;
+    }
+
+    bst->data[index] = bst->data[bst->size - 1];
+    bst->size--;
+}
+
+int main()
+{
+    struct BST *bst = createBST();
+    int choice, value;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Delete\n");
+        printf("3. Search\n");
+        printf("4. Preorder Traversal\n");
+        printf("5. Inorder Traversal\n");
+        printf("6. Postorder Traversal\n");
+        printf("7. Find Minimum Element\n");
+        printf("8. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            insert(bst, value);
+            break;
+        case 2:
+            printf("Enter value to delete: ");
+            scanf("%d", &value);
+            delete(bst, value);
+            break;
+        case 3:
+            printf("Enter value to search: ");
+            scanf("%d", &value);
+            int searchResult = search(bst, value);
+            if (searchResult != -1)
+            {
+                printf("Value %d found at index %d.\n", value, 
+                searchResult);
+            }
+            else
+            {
+                printf("Value %d not found in BST.\n", value);
+            }
+            break;
+        case 4:
+            printf("Preorder Traversal: ");
+            preorder(bst, 0);
+            printf("\n");
+            break;
+        case 5:
+            printf("Inorder Traversal: ");
+            inorder(bst, 0);
+            printf("\n");
+            break;
+        case 6:
+            printf("Postorder Traversal: ");
+            postorder(bst, 0);
+            printf("\n");
+            break;
+        case 7:
+            value = minimum(bst);
+            if (value != -1)
+            {
+                printf("Minimum element: %d\n", value);
+            }
+            break;
+        case 8:
+            printf("Exiting...\n");
+            free(bst);
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+</pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 10
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 5
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 15
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 4
+Preorder Traversal: 10 5 15 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 5
+Inorder Traversal: 5 10 15 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 6
+Postorder Traversal: 5 15 10 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 7
+Minimum element: 5
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 3
+Enter value to search: 5
+Value 5 found at index 0.
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 8
+Exiting...
+</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree8" class="Content-box">
+          <h3>
+            8. Create binary search tree dynamically (insert, delete, search,
+            preorder, inorder, postorder, minimum element).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *createNode(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct 
+    Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *insert(struct Node *root, int value)
+{
+    if (root == NULL)
+    {
+        return createNode(value);
+    }
+    if (value < root->data)
+    {
+        root->left = insert(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = insert(root->right, value);
+    }
+    else
+    {
+        printf("Value %d already exists in the BST.\n", value);
+    }
+    return root;
+}
+
+struct Node *search(struct Node *root, int value)
+{
+    if (root == NULL || root->data == value)
+    {
+        return root;
+    }
+    if (value < root->data)
+    {
+        return search(root->left, value);
+    }
+    return search(root->right, value);
+}
+
+struct Node *minimum(struct Node *root)
+{
+    if (root == NULL)
+    {
+        printf("BST is empty.\n");
+        return NULL;
+    }
+    while (root->left != NULL)
+    {
+        root = root->left;
+    }
+    return root;
+}
+
+struct Node *delete(struct Node *root, int value)
+{
+    if (root == NULL)
+    {
+        printf("Value %d not found in BST.\n", value);
+        return root;
+    }
+    if (value < root->data)
+    {
+        root->left = delete(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = delete(root->right, value);
+    }
+    else
+    {
+        if (root->left == NULL)
+        {
+            struct Node *temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            struct Node *temp = root->left;
+            free(root);
+            return temp;
+        }
+        struct Node *temp = minimum(root->right);
+        root->data = temp->data;
+        root->right = delete(root->right, temp->data);
+    }
+    return root;
+}
+
+void inorder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+void preorder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+void postorder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+    struct Node *searchResult;
+    struct Node *minNode;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Delete\n");
+        printf("3. Search\n");
+        printf("4. Preorder Traversal\n");
+        printf("5. Inorder Traversal\n");
+        printf("6. Postorder Traversal\n");
+        printf("7. Find Minimum Element\n");
+        printf("8. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            break;
+        case 2:
+            printf("Enter value to delete: ");
+            scanf("%d", &value);
+            root = delete(root, value);
+            break;
+        case 3:
+            printf("Enter value to search: ");
+            scanf("%d", &value);
+            searchResult = search(root, value);
+            if (searchResult != NULL)
+            {
+                printf("Value %d found in BST.\n", 
+                searchResult->data);
+            }
+            else
+            {
+                printf("Value %d not found in BST.\n", value);
+            }
+            break;
+        case 4:
+            printf("Preorder Traversal: ");
+            preorder(root);
+            printf("\n");
+            break;
+        case 5:
+            printf("Inorder Traversal: ");
+            inorder(root);
+            printf("\n");
+            break;
+        case 6:
+            printf("Postorder Traversal: ");
+            postorder(root);
+            printf("\n");
+            break;
+        case 7:
+            minNode = minimum(root);
+            if (minNode != NULL)
+            {
+                printf("Minimum element: %d\n", minNode->data);
+            }
+            break;
+        case 8:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 10
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 5
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 15
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 2
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 7
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 12
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 1
+Enter value to insert: 18
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 4
+Preorder Traversal: 10 5 2 7 15 12 18 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 5
+Inorder Traversal: 2 5 7 10 12 15 18 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 6
+Postorder Traversal: 2 7 5 12 18 15 10 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 3
+Enter value to search: 7
+Value 7 found in BST.
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 3
+Enter value to search: 20
+Value 20 not found in BST.
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 2
+Enter value to delete: 5
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 5
+Inorder Traversal: 2 7 10 12 15 18 
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 7
+Minimum element: 2
+
+Menu:
+1. Insert
+2. Delete
+3. Search
+4. Preorder Traversal
+5. Inorder Traversal
+6. Postorder Traversal
+7. Find Minimum Element
+8. Exit
+Enter your choice: 8
+Exiting...
+
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="tree9" class="Content-box">
+          <h3>
+            9. Find inorder predecessor and inorder successor of binary search
+            tree (dynamically represented).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *createNode(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct 
+    Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *insert(struct Node *root, int value)
+{
+    if (root == NULL)
+    {
+        return createNode(value);
+    }
+    if (value < root->data)
+    {
+        root->left = insert(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = insert(root->right, value);
+    }
+    else
+    {
+        printf("Value %d already exists in the BST.\n", value);
+    }
+    return root;
+}
+
+struct Node *inorderPredecessor(struct Node *root, struct Node 
+*node)
+{
+    if (node->left != NULL)
+    {
+        struct Node *current = node->left;
+        while (current->right != NULL)
+        {
+            current = current->right;
+        }
+        return current;
+    }
+
+    struct Node *predecessor = NULL;
+    struct Node *current = root;
+    while (current != NULL)
+    {
+        if (node->data < current->data)
+        {
+            current = current->left;
+        }
+        else if (node->data > current->data)
+        {
+            predecessor = current;
+            current = current->right;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return predecessor;
+}
+
+struct Node *inorderSuccessor(struct Node *root, struct Node *node)
+{
+    if (node->right != NULL)
+    {
+        struct Node *current = node->right;
+        while (current->left != NULL)
+        {
+            current = current->left;
+        }
+        return current;
+    }
+
+    struct Node *successor = NULL;
+    struct Node *current = root;
+    while (current != NULL)
+    {
+        if (node->data < current->data)
+        {
+            successor = current;
+            current = current->left;
+        }
+        else if (node->data > current->data)
+        {
+            current = current->right;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return successor;
+}
+
+struct Node *search(struct Node *root, int value)
+{
+    if (root == NULL || root->data == value)
+    {
+        return root;
+    }
+    if (value < root->data)
+    {
+        return search(root->left, value);
+    }
+    return search(root->right, value);
+}
+
+void inorder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+    struct Node *node;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Find Inorder Predecessor\n");
+        printf("3. Find Inorder Successor\n");
+        printf("4. Inorder Traversal\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            break;
+        case 2:
+            printf("Enter value to find inorder predecessor: ");
+            scanf("%d", &value);
+            node = search(root, value);
+            if (node != NULL)
+            {
+                struct Node *predecessor = inorderPredecessor(root, 
+                node);
+                if (predecessor != NULL)
+                {
+                    printf("Inorder Predecessor of %d: %d\n", 
+                    value, predecessor->data);
+                }
+                else
+                {
+                    printf("No Inorder Predecessor found for %d.
+                    \n", value);
+                }
+            }
+            else
+            {
+                printf("Value %d not found in BST.\n", value);
+            }
+            break;
+        case 3:
+            printf("Enter value to find inorder successor: ");
+            scanf("%d", &value);
+            node = search(root, value);
+            if (node != NULL)
+            {
+                struct Node *successor = inorderSuccessor(root, 
+                node);
+                if (successor != NULL)
+                {
+                    printf("Inorder Successor of %d: %d\n", value, 
+                    successor->data);
+                }
+                else
+                {
+                    printf("No Inorder Successor found for %d.\n", 
+                    value);
+                }
+            }
+            else
+            {
+                printf("Value %d not found in BST.\n", value);
+            }
+            break;
+        case 4:
+            printf("Inorder Traversal: ");
+            inorder(root);
+            printf("\n");
+            break;
+        case 5:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert
+2. Find Inorder Predecessor
+3. Find Inorder Successor
+4. Inorder Traversal
+5. Exit
+Enter your choice: 1
+Enter value to insert: 20
+
+Menu:
+1. Insert
+2. Find Inorder Predecessor
+3. Find Inorder Successor
+4. Inorder Traversal
+5. Exit
+Enter your choice: 1
+Enter value to insert: 10
+
+Menu:
+1. Insert
+2. Find Inorder Predecessor
+3. Find Inorder Successor
+4. Inorder Traversal
+5. Exit
+Enter your choice: 1
+Enter value to insert: 30
+
+Menu:
+1. Insert
+2. Find Inorder Predecessor
+3. Find Inorder Successor
+4. Inorder Traversal
+5. Exit
+Enter your choice: 2
+Enter value to find inorder predecessor: 20
+Inorder Predecessor of 20: 10
+
+Menu:
+1. Insert
+2. Find Inorder Predecessor
+3. Find Inorder Successor
+4. Inorder Traversal
+5. Exit
+Enter your choice: 3
+Enter value to find inorder successor: 20
+Inorder Successor of 20: 30
+
+Menu:
+1. Insert
+2. Find Inorder Predecessor
+3. Find Inorder Successor
+4. Inorder Traversal
+5. Exit
+Enter your choice: 5
+Exiting...
+
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div id="tree10" class="Content-box">
+          <h3>10. Check whether binary search tree contains dead end.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#define INT_MAX 100
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *createNode(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct 
+    Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *insert(struct Node *root, int value)
+{
+    if (root == NULL)
+    {
+        return createNode(value);
+    }
+    if (value < root->data)
+    {
+        root->left = insert(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = insert(root->right, value);
+    }
+    else
+    {
+        printf("Value %d already exists in the BST.\n", value);
+    }
+    return root;
+}
+
+int checkDeadEnd(struct Node *node, int min, int max)
+{
+    if (node == NULL)
+    {
+        return 0;
+    }
+    if (node->left == NULL && node->right == NULL)
+    {
+        if (node->data == min + 1 && node->data == max - 1)
+        {
+            return 1;
+        }
+    }
+    return checkDeadEnd(node->left, min, node->data) || checkDeadEnd
+    (node->right, node->data, max);
+}
+
+int hasDeadEnd(struct Node *root)
+{
+    return checkDeadEnd(root, 0, INT_MAX);
+}
+
+void inorder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Check for Dead End\n");
+        printf("3. Inorder Traversal\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            break;
+        case 2:
+            if (hasDeadEnd(root))
+            {
+                printf("The BST contains a dead end.\n");
+            }
+            else
+            {
+                printf("The BST does not contain any dead end.\n");
+            }
+            break;
+        case 3:
+            printf("Inorder Traversal: ");
+            inorder(root);
+            printf("\n");
+            break;
+        case 4:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert
+2. Check for Dead End
+3. Inorder Traversal
+4. Exit
+Enter your choice: 1
+Enter value to insert: 10
+
+Menu:
+1. Insert
+2. Check for Dead End
+3. Inorder Traversal
+4. Exit
+Enter your choice: 1
+Enter value to insert: 5
+
+Menu:
+1. Insert
+2. Check for Dead End
+3. Inorder Traversal
+4. Exit
+Enter your choice: 1
+Enter value to insert: 15
+
+Menu:
+1. Insert
+2. Check for Dead End
+3. Inorder Traversal
+4. Exit
+Enter your choice: 3
+Inorder Traversal: 5 10 15 
+
+Menu:
+1. Insert
+2. Check for Dead End
+3. Inorder Traversal
+4. Exit
+Enter your choice: 2
+The BST does not contain any dead end.
+
+Menu:
+1. Insert
+2. Check for Dead End
+3. Inorder Traversal
+4. Exit
+Enter your choice: 4
+Exiting...
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree11" class="Content-box">
+          <h3>11. Create binary tree to binary search tree through array.</h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct BTNode
+{
+    int data;
+    struct BTNode *left;
+    struct BTNode *right;
+};
+
+struct BSTNode
+{
+    int data;
+    struct BSTNode *left;
+    struct BSTNode *right;
+};
+
+struct BTNode *createBTNode(int value)
+{
+    struct BTNode *newNode = (struct BTNode *)malloc(sizeof(struct 
+    BTNode));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct BSTNode *createBSTNode(int value)
+{
+    struct BSTNode *newNode = (struct BSTNode *)malloc(sizeof
+    (struct BSTNode));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct BSTNode *insertBST(struct BSTNode *root, int value)
+{
+    if (root == NULL)
+    {
+        return createBSTNode(value);
+    }
+    if (value < root->data)
+    {
+        root->left = insertBST(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = insertBST(root->right, value);
+    }
+    return root;
+}
+
+void inorderBST(struct BSTNode *root)
+{
+    if (root != NULL)
+    {
+        inorderBST(root->left);
+        printf("%d ", root->data);
+        inorderBST(root->right);
+    }
+}
+
+struct BSTNode *convertBTtoBST(struct BTNode *root)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+
+    struct BSTNode *bstRoot = NULL;
+    struct BTNode *queue[100];
+    int front = 0, rear = 0;
+
+    queue[rear++] = root;
+
+    while (front < rear)
+    {
+        struct BTNode *currentNode = queue[front++];
+        bstRoot = insertBST(bstRoot, currentNode->data);
+
+        if (currentNode->left != NULL)
+        {
+            queue[rear++] = currentNode->left;
+        }
+        if (currentNode->right != NULL)
+        {
+            queue[rear++] = currentNode->right;
+        }
+    }
+
+    return bstRoot;
+}
+
+void freeBT(struct BTNode *root)
+{
+    if (root != NULL)
+    {
+        freeBT(root->left);
+        freeBT(root->right);
+        free(root);
+    }
+}
+
+void freeBST(struct BSTNode *root)
+{
+    if (root != NULL)
+    {
+        freeBST(root->left);
+        freeBST(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    struct BTNode *root = createBTNode(10);
+    root->left = createBTNode(5);
+    root->right = createBTNode(15);
+    root->left->left = createBTNode(2);
+    root->left->right = createBTNode(7);
+    root->right->right = createBTNode(20);
+
+    printf("Binary Tree created. Converting to Binary Search Tree...
+    \n");
+
+    struct BSTNode *bstRoot = convertBTtoBST(root);
+
+    printf("In-order Traversal of the Binary Search Tree:\n");
+    inorderBST(bstRoot);
+    printf("\n");
+
+    freeBT(root);
+    freeBST(bstRoot);
+
+    return 0;
+}
+
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Binary Tree created. Converting to Binary Search Tree...
+In-order Traversal of the Binary Search Tree:
+2 5 7 10 15 20
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree12" class="Content-box">
+          <h3>
+            12. Find kth largest element in binary search tree through array.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *createNode(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct 
+    Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *insert(struct Node *root, int value)
+{
+    if (root == NULL)
+    {
+        return createNode(value);
+    }
+    if (value < root->data)
+    {
+        root->left = insert(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = insert(root->right, value);
+    }
+    else
+    {
+        printf("Value %d already exists in the BST.\n", value);
+    }
+    return root;
+}
+
+void inorder(struct Node *root, int *array, int *index)
+{
+    if (root != NULL)
+    {
+        inorder(root->left, array, index);
+        array[(*index)++] = root->data;
+        inorder(root->right, array, index);
+    }
+}
+
+int findKthLargest(struct Node *root, int k)
+{
+    int array[100];
+    int index = 0;
+
+    inorder(root, array, &index);
+
+    if (k <= 0 || k > index)
+    {
+        printf("Invalid value of k: %d. There are only %d elements 
+        in the BST.\n", k, index);
+        return -1;
+    }
+    return array[index - k];
+}
+
+void freeBST(struct Node *root)
+{
+    if (root != NULL)
+    {
+        freeBST(root->left);
+        freeBST(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value, k;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Find Kth Largest Element\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            break;
+        case 2:
+            printf("Enter value of k: ");
+            scanf("%d", &k);
+            int kthLargest = findKthLargest(root, k);
+            if (kthLargest != -1)
+            {
+                printf("The %dth largest element is: %d\n", k, 
+                kthLargest);
+            }
+            break;
+        case 3:
+            printf("Exiting...\n");
+            freeBST(root);
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 20
+
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 15
+
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 25
+
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 10
+
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 2
+Enter value of k: 2
+The 2th largest element is: 20
+
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 2
+Enter value of k: 5
+Invalid value of k: 5. There are only 4 elements in the BST.
+
+Menu:
+1. Insert
+2. Find Kth Largest Element
+3. Exit
+Enter your choice: 3
+Exiting...
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree13" class="Content-box">
+          <h3>
+            13. Find kth smallest element in a binary search tree through array.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *createNode(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct 
+    Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *insert(struct Node *root, int value)
+{
+    if (root == NULL)
+    {
+        return createNode(value);
+    }
+    if (value < root->data)
+    {
+        root->left = insert(root->left, value);
+    }
+    else if (value > root->data)
+    {
+        root->right = insert(root->right, value);
+    }
+    else
+    {
+        printf("Value %d already exists in the BST.\n", value);
+    }
+    return root;
+}
+
+void inorder(struct Node *root, int *array, int *index)
+{
+    if (root != NULL)
+    {
+        inorder(root->left, array, index);
+        array[(*index)++] = root->data;
+        inorder(root->right, array, index);
+    }
+}
+
+int findKthSmallest(struct Node *root, int k)
+{
+    int array[100];
+    int index = 0;
+
+    inorder(root, array, &index);
+
+    if (k <= 0 || k > index)
+    {
+        printf("Invalid value of k: %d. There are only %d elements 
+        in the BST.\n", k, index);
+        return -1;
+    }
+    return array[k - 1];
+}
+
+void freeBST(struct Node *root)
+{
+    if (root != NULL)
+    {
+        freeBST(root->left);
+        freeBST(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    int choice, value, k;
+
+    while (1)
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Find Kth Smallest Element\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            root = insert(root, value);
+            break;
+        case 2:
+            printf("Enter value of k: ");
+            scanf("%d", &k);
+            int kthSmallest = findKthSmallest(root, k);
+            if (kthSmallest != -1)
+            {
+                printf("The %dth smallest element is: %d\n", k, 
+                kthSmallest);
+            }
+            break;
+        case 3:
+            printf("Exiting...\n");
+            freeBST(root);
+            exit(0);
+        default:
+            printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 20
+
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 15
+
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 25
+
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 1
+Enter value to insert: 10
+
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 2
+Enter value of k: 2
+The 2th smallest element is: 15
+
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 2
+Enter value of k: 5
+Invalid value of k: 5. There are only 4 elements in the BST.
+
+Menu:
+1. Insert
+2. Find Kth Smallest Element
+3. Exit
+Enter your choice: 3
+Exiting...
+
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree14" class="Content-box">
+          <h3>
+            14. Print preorder traversal to postorder traversal of binary search
+            tree.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#define INT_MIN 0
+#define INT_MAX 100
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = node->right = NULL;
+    return node;
+}
+
+struct Node *constructBST(int preorder[], int *preIndex, int key,
+                          int min, int max, int size)
+{
+    if (*preIndex >= size)
+        return NULL;
+
+    struct Node *root = NULL;
+
+    if (key > min && key < max)
+    {
+        root = newNode(key);
+        *preIndex = *preIndex + 1;
+
+        if (*preIndex < size)
+        {
+            root->left = constructBST(preorder, preIndex,
+                                      preorder[*preIndex], min, 
+                                      key, size);
+        }
+        if (*preIndex < size)
+        {
+            root->right = constructBST(preorder, preIndex,
+                                       preorder[*preIndex], key, 
+                                       max, size);
+        }
+    }
+
+    return root;
+}
+
+void printPostorder(struct Node *node)
+{
+    if (node == NULL)
+        return;
+
+    printPostorder(node->left);
+    printPostorder(node->right);
+    printf("%d ", node->data);
+}
+
+void freeTree(struct Node *node)
+{
+    if (node == NULL)
+        return;
+
+    freeTree(node->left);
+    freeTree(node->right);
+    free(node);
+}
+
+int main()
+{
+    int size;
+    printf("Enter the number of elements: ");
+    scanf("%d", &size);
+
+    if (size <= 0)
+    {
+        printf("Invalid size!\n");
+        return 1;
+    }
+
+    int *preorder = (int *)malloc(size * sizeof(int));
+    if (preorder == NULL)
+    {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    printf("Enter the preorder traversal elements:\n");
+    for (int i = 0; i < size; i++)
+    {
+        scanf("%d", &preorder[i]);
+    }
+
+    int preIndex = 0;
+    struct Node *root = constructBST(preorder, &preIndex, preorder
+    [0], INT_MIN, INT_MAX, size);
+
+    printf("\nPostorder traversal of the constructed tree: ");
+    printPostorder(root);
+    printf("\n");
+
+    freeTree(root);
+    free(preorder);
+
+    return 0;
+}
+
+ 
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of elements: 5
+Enter the preorder traversal elements:
+10 5 1 7 40
+
+Postorder traversal of the constructed tree: 1 7 5 40 10
+ 
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree15" class="Content-box">
+          <h3>
+            15. Construct binary search tree from given preorder traversal
+            through arrays.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;limits.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int data)
+{
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
+
+struct Node *constructBST(int preorder[], int *index, int key, int 
+min, int max, int n)
+{
+    if (*index >= n || key < min || key > max)
+    {
+        return NULL;
+    }
+
+    struct Node *root = newNode(key);
+    *index = *index + 1;
+
+    if (*index < n)
+    {
+        root->left = constructBST(preorder, index, preorder
+        [*index], min, key - 1, n);
+        root->right = constructBST(preorder, index, preorder
+        [*index], key + 1, max, n);
+    }
+
+    return root;
+}
+
+void inorderTraversal(struct Node *root)
+{
+    if (root != NULL)
+    {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of elements in preorder traversal: ");
+    scanf("%d", &n);
+
+    int preorder[n];
+    printf("Enter the preorder traversal: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &preorder[i]);
+    }
+
+    int index = 0;
+    struct Node *root = constructBST(preorder, &index, preorder[0], 
+    INT_MIN, INT_MAX, n);
+
+    printf("Inorder traversal of the constructed BST: ");
+    inorderTraversal(root);
+    printf("\n");
+
+    return 0;
+}
+
+          </pre
+              >
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of elements in preorder traversal: 5
+Enter the preorder traversal: 10 5 1 7 40
+Inorder traversal of the constructed BST: 1 5 7 10 40
+                                          </pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree16" class="Content-box">
+          <h3>
+            16. Construct binary search tree from given postorder traversal
+            through arrays.
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;limits.h>
+
+struct TreeNode
+{
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+struct TreeNode *createNode(int data)
+{
+    struct TreeNode *newNode = (struct TreeNode *)malloc(sizeof
+    (struct TreeNode));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+struct TreeNode *constructBSTUtil(int postorder[], int *index, int 
+minValue, int maxValue, int n)
+{
+    if (*index < 0)
+    {
+        return NULL;
+    }
+
+    int current = postorder[*index];
+
+    if (current < minValue || current > maxValue)
+    {
+        return NULL;
+    }
+
+    struct TreeNode *root = createNode(current);
+    (*index)--;
+
+    root->right = constructBSTUtil(postorder, index, current, 
+    maxValue, n);
+    root->left = constructBSTUtil(postorder, index, minValue, 
+    current, n);
+
+    return root;
+}
+
+struct TreeNode *constructBST(int postorder[], int n)
+{
+    int index = n - 1;
+    return constructBSTUtil(postorder, &index, INT_MIN, INT_MAX, n);
+}
+
+void inorderTraversal(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of nodes in the postorder traversal: 
+    ");
+    scanf("%d", &n);
+
+    int postorder[n];
+    printf("Enter the postorder traversal elements: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &postorder[i]);
+    }
+
+    struct TreeNode *root = constructBST(postorder, n);
+
+    printf("Inorder traversal of the constructed BST: ");
+    inorderTraversal(root);
+    printf("\n");
+
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes in the postorder traversal: 5
+Enter the postorder traversal elements: 1 7 5 40 10
+Inorder traversal of the constructed BST: 1 5 7 10 40
+</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree17" class="Content-box">
+          <h3>
+            17. Create strictly binary tree from the given input by the user
+            (dynamically).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct TreeNode
+{
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+struct TreeNode *createNode(int data)
+{
+    struct TreeNode *newNode = (struct TreeNode *)malloc(sizeof
+    (struct TreeNode));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+struct TreeNode *createStrictlyBinaryTree(int *values, int index, 
+int n)
+{
+    if (index >= n)
+    {
+        return NULL;
+    }
+
+    struct TreeNode *root = createNode(values[index]);
+
+    root->left = createStrictlyBinaryTree(values, 2 * index + 1, n);
+    root->right = createStrictlyBinaryTree(values, 2 * index + 2, 
+    n);
+
+    return root;
+}
+
+void inorderTraversal(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+void freeTree(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of nodes for the strictly binary tree: 
+    ");
+    scanf("%d", &n);
+
+    if ((n & (n + 1)) != 0)
+    {
+        printf("The number of nodes must be of the form 2^k - 1 for 
+        some k.\n");
+        return 1;
+    }
+
+    int values[n];
+    printf("Enter the values for the nodes: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &values[i]);
+    }
+
+    struct TreeNode *root = createStrictlyBinaryTree(values, 0, n);
+
+    printf("Inorder traversal of the constructed strictly binary 
+    tree: ");
+    inorderTraversal(root);
+    printf("\n");
+
+    freeTree(root);
+
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes for the strictly binary tree: 7
+Enter the values for the nodes: 1 2 3 4 5 6 7
+Inorder traversal of the constructed strictly binary tree: 4 2 5 1 
+6 3 7
+</pre
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="tree18" class="Content-box">
+          <h3>
+            18. Create almost complete binary tree from the given input by the
+            user (dynamically).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct TreeNode
+{
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+struct TreeNode *createNode(int data)
+{
+    struct TreeNode *newNode = (struct TreeNode *)malloc(sizeof
+    (struct TreeNode));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+struct TreeNode *createAlmostCompleteBinaryTree(int *values, int 
+index, int n)
+{
+    if (index >= n)
+    {
+        return NULL;
+    }
+
+    struct TreeNode *root = createNode(values[index]);
+
+    root->left = createAlmostCompleteBinaryTree(values, 2 * index + 
+    1, n);
+    root->right = createAlmostCompleteBinaryTree(values, 2 * index 
+    + 2, n);
+
+    return root;
+}
+
+void inorderTraversal(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+void freeTree(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of nodes for the almost complete 
+    binary tree: ");
+    scanf("%d", &n);
+
+    int values[n];
+    printf("Enter the values for the nodes: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &values[i]);
+    }
+
+    struct TreeNode *root = createAlmostCompleteBinaryTree(values, 
+    0, n);
+
+    printf("Inorder traversal of the constructed almost complete 
+    binary tree: ");
+    inorderTraversal(root);
+    printf("\n");
+
+    freeTree(root);
+
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes for the almost complete binary tree: 7
+Enter the values for the nodes: 1 2 3 4 5 6 7
+Inorder traversal of the constructed almost complete binary tree: 4 
+2 5 1 6 3 7
+
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="tree19" class="Content-box">
+          <h3>
+            19. Create complete binary tree from the given input by the user
+            (dynamically).
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct TreeNode
+{
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+struct TreeNode *createNode(int data)
+{
+    struct TreeNode *newNode = (struct TreeNode *)malloc(sizeof
+    (struct TreeNode));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+struct TreeNode *createCompleteBinaryTree(int *values, int index, 
+int n)
+{
+    if (index >= n)
+    {
+        return NULL;
+    }
+
+    struct TreeNode *root = createNode(values[index]);
+
+    root->left = createCompleteBinaryTree(values, 2 * index + 1, n);
+    root->right = createCompleteBinaryTree(values, 2 * index + 2, 
+    n);
+
+    return root;
+}
+
+void inorderTraversal(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+void freeTree(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of nodes for the complete binary tree: 
+    ");
+    scanf("%d", &n);
+
+    int values[n];
+    printf("Enter the values for the nodes: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &values[i]);
+    }
+
+    struct TreeNode *root = createCompleteBinaryTree(values, 0, n);
+
+    printf("Inorder traversal of the constructed complete binary 
+    tree: ");
+    inorderTraversal(root);
+    printf("\n");
+
+    freeTree(root);
+
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes for the complete binary tree: 7
+Enter the values for the nodes: 1 2 3 4 5 6 7
+Inorder traversal of the constructed complete binary tree: 4 2 5 1 
+6 3 7
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="tree20" class="Content-box">
+          <h3>
+            20. Count the number of nodes in binary search tre
+            constructed(dynamically)
+          </h3>
+          <div class="code-box">
+            <div class="code">
+              <h4>Code :</h4>
+              <pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+struct TreeNode
+{
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+struct TreeNode *createNode(int data)
+{
+    struct TreeNode *newNode = (struct TreeNode *)malloc(sizeof
+    (struct TreeNode));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+struct TreeNode *insert(struct TreeNode *root, int data)
+{
+    if (root == NULL)
+    {
+        return createNode(data);
+    }
+
+    if (data < root->data)
+    {
+        root->left = insert(root->left, data);
+    }
+    else if (data > root->data)
+    {
+        root->right = insert(root->right, data);
+    }
+    return root;
+}
+
+int countNodes(struct TreeNode *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+void freeTree(struct TreeNode *root)
+{
+    if (root != NULL)
+    {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of nodes to insert into the BST: ");
+    scanf("%d", &n);
+
+    struct TreeNode *root = NULL;
+
+    printf("Enter the values for the nodes: ");
+    for (int i = 0; i < n; i++)
+    {
+        int value;
+        scanf("%d", &value);
+        root = insert(root, value);
+    }
+
+    int nodeCount = countNodes(root);
+    printf("The number of nodes in the BST is: %d\n", nodeCount);
+
+    freeTree(root);
+
+    return 0;
+}
+
+              </pre>
+            </div>
+            <div class="output">
+              <h4>Output :</h4>
+              <pre>
+Enter the number of nodes to insert 
+into the BST: 5
+Enter the values for the nodes: 10 20 5 15 30
+The number of nodes in the BST is: 5
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <footer id="Contact">
+          <img src="../Images/profile.jpg" />
+          <p>Learn Code</p>
+          <span>Copywrite &copy; 2024 LearnCode.com </span>
+
+          <a
+            href="https://www.facebook.com/"
+            aria-label="facebook"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.twitter.com/"
+            aria-label="twitter"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            aria-label="instagram"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.github.com/"
+            aria-label="github"
+            target="_blank"
+            rel="noreferrer"
+            class="links"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              class="text-xl"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+              ></path>
+            </svg>
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
